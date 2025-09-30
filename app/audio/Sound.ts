@@ -1,4 +1,4 @@
-import Track from "./track"
+import Track from "./Track"
 
 export default class Sound{
     pool: any[]
