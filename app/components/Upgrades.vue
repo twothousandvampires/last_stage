@@ -18,7 +18,7 @@
                     height="60px"
                     :src="`/icons/${upgrade.name}.png`" alt="">
                     <p>
-                    {{ upgrade.name }}
+                    {{ upgrade.name }}({{ upgrade.cost }})
                 </p>
             </div>
         </div>

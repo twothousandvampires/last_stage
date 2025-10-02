@@ -18,7 +18,6 @@
      onMounted(() => {
         $socket.on('start', () => {
             game_is_started.value = true
-            console.log(game_is_started.value)
         })
      })
 </script>

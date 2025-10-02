@@ -97,6 +97,8 @@ import Soul from "./src/sprites/Effect/Soul"
 import UnholySpirit from "./src/sprites/Effect/UnholySpirit"
 import Input from "./Input"
 import HeavenRay from "./src/sprites/Effect/HeavenRay"
+import SorcerersSkull from "./src/sprites/Effect/SorcerersSkull"
+import Bless from "./src/sprites/Effect/Bless"
 
 export default class Render{
     
@@ -455,7 +457,13 @@ export default class Render{
         }
         else if(elem.name === 'heaven ray'){
             return new HeavenRay(elem.id)
-        }   
+        }
+        else if(elem.name === 'sorcerers skull'){
+            return new SorcerersSkull(elem.id)
+        }
+        else if(elem.name === 'bless'){
+            return new Bless(elem.id)
+        }      
     }
 
     public updateData(data: any){

@@ -32,7 +32,7 @@ export default abstract class Sprite{
     can_share_light: boolean
     light_z: number
 
-     invisible: boolean = false
+    invisible: boolean = false
 
     constructor(public id: number){
       

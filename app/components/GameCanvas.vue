@@ -94,6 +94,7 @@
     const emit = defineEmits(['end']);
 
     onMounted(() => {
+        $closeTitle()
         let render = new Render($socket)
 
         $socket.on('tick_data', (server_data, server_time) => {

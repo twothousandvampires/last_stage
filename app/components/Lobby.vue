@@ -99,6 +99,10 @@
             </div>
             <div class="left_block">
                 <div class="stat_wrap">
+                    <div v-if="value.is_player" style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; width: 60%;">
+                        <p @mouseover="$title($event,'load stats, items and abilities')" @mouseleave="$closeTitle()" class="button" @click="loadBuild(value.template.name)">load</p>
+                        <p @mouseover="$title($event,'save stats, items and abilities')" @mouseleave="$closeTitle()" class="button" @click="saveBuild(value.template.name, value.template)">save</p>
+                    </div>
                     <p>remain stat points : {{ value.template.stat_count }}</p>
                     <div class="stat" v-for="(stat_value, key) in value.template.stats">
                         <p class="button" v-if="value.is_player" @click="decreaseStat(key)">-</p>
@@ -158,6 +162,18 @@
         else if(type === 5) return 'passive'
     }
 
+     let loadBuild = (name) => {
+        let b = JSON.parse(localStorage.getItem(name))
+        if(b){
+            $socket.emit('load_template', b)
+        }
+    }
+
+    let saveBuild = (name, item) => {
+        if(!name || !item) return
+        localStorage.setItem(name, JSON.stringify(item))
+    }
+
     let item_pull = ref([])
 
     onMounted(() => {
@@ -174,7 +190,7 @@
             item_pull.value = []
             items.forEach(elem => item_pull.value.push(elem))
 
-            
+           
         })
     })
 

@@ -43,10 +43,6 @@
                 The more penetrated the enemy is, the higher the chance they will receive additional damage.
             </h4>
             <h4>
-                The player also has a penetration rating that is applied and stacks on the enemy with each hit.
-                The more penetrated the enemy is, the higher the chance they will receive additional damage.
-            </h4>
-            <h4>
                 And the last stat that helps deal damage is Impact. It has a default cooldown of 3 seconds. When triggered, it deals damage to adjacent targets. Does not deal damage to hit target.
             </h4>
             <p>
@@ -70,6 +66,11 @@
         <h4>Block</h4>
         <p>You can block damage by pressing space, each class has a different block chance and it can be increased in different ways.</p>
         <p>You immediately enter a blocked state after pressing SPACE. Don't rely on the animation.</p>
+
+        <h4>Spirit</h4>
+        <p>
+            Give a chance lose resource instead life when getting damage.
+        </p>
 
         <h4>Armour rate</h4>
         <p>
@@ -101,6 +102,7 @@
                 <li>Grace - gives you 1 grace <span><img width="120px" height="120px" src="/preview/grace.png"></span></li>
                 <li>Essence - increases health and briefly increases vision radius <span><img  width="120px" height="120px" src="/preview/entity.png"></span></li>
                 <li>Energy sphere - gives 2 energy and phasing<span><img width="120px" height="120px" src="/preview/charged_sphere.png"></span></li>
+                <li>Sorcerer's skull - gives 1 ward and one free cast<span><img width="120px" height="120px" src="/preview/skull.gif"></span></li>
                 <li>Rift - spends 1 grace and casts a powerful spell <span><img class="bg" width="120px" height="120px" src="/preview/split.gif"></span></li>
                 <li>Item - gives a random item <span><img width="120px" height="120px" src="/preview/item_drop.gif"></span></li>
             </ul>

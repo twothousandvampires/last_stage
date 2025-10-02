@@ -31,7 +31,19 @@ export default class Skull extends UnitSprite{
             this.max_frame = 10
             this.max_frame_tick = 2
             this.removable = true          
-        }             
+        }
+        else if(this.state === 'burn_dying'){
+            this.y_frame_offset = 150
+            this.max_frame = 10
+            this.max_frame_tick = 2
+            this.removable = true
+        }
+        else if(this.state === 'explode'){        
+            this.y_frame_offset = 150
+            this.max_frame = 10
+            this.max_frame_tick = 2
+            this.removable = true          
+        }               
         else if(this.state === 'attack'){
             this.y_frame_offset = 100
             this.max_frame = 6
