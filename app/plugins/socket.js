@@ -1,7 +1,10 @@
 import { io } from 'socket.io-client';
 
 export default defineNuxtPlugin(() => {
-    const socket = io('http://89.111.154.136:9001', {
+    const config = useRuntimeConfig()
+
+    console.log(config.public.baseUrl)
+    const socket = io(config.public.baseUrl, {
         autoConnect: false,
     });
 
