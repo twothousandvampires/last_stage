@@ -64,16 +64,15 @@ export default class Bones extends UnitSprite {
             this.is_bottom = true
             this.removable = true
             this.sprite_name = 'bones3'
+            this.repeatable = false
             let r = Math.random()
             if(r < 0.5){               
                 this.max_frame = 6
-                this.max_frame_tick = 50
-                this.repeatable = false
+                this.max_frame_tick = Math.round( (this.action_time / this.max_frame) / 30)
             }
             else{              
                 this.max_frame = 8
-                this.max_frame_tick = 50
-                this.repeatable = false
+                this.max_frame_tick = Math.round( (this.action_time / this.max_frame) / 30)
             }
         }
         else if(this.state === 'dead_with_skull'){
@@ -160,7 +159,7 @@ export default class Bones extends UnitSprite {
             this.max_frame_tick = 3
         }
         else{
-            this.noSprite()
+            this.removable = true
         }
     }
 }

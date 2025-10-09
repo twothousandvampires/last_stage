@@ -54,13 +54,13 @@ export default class ImpySprite extends UnitSprite {
             if(r < 0.5){
                 this.sprite_name = 'impy3'
                 this.max_frame = 11
-                this.max_frame_tick = 100
+                this.max_frame_tick = Math.round( (this.action_time / this.max_frame) / 30)
                 this.repeatable = false
             }
             else{   
                 this.sprite_name = 'impy3'
                 this.max_frame = 11
-                this.max_frame_tick = 100
+                this.max_frame_tick = Math.round( (this.action_time / this.max_frame) / 30)
                 this.repeatable = false
             }
         }
@@ -119,7 +119,7 @@ export default class ImpySprite extends UnitSprite {
             this.max_frame_tick = 3
         }
         else{
-            this.noSprite()
+            this.removable = true
         }
     }
 }

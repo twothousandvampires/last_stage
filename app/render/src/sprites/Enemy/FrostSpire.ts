@@ -46,10 +46,10 @@ export default class FrostSpire extends UnitSprite{
             this.sprite_name = 'frostspire'
             this.y_frame_offset = 240     
             this.max_frame = 5
-            this.max_frame_tick = 10
+            this.max_frame_tick = Math.round( (this.action_time / this.max_frame) / 30)
         }
         else{
-            this.noSprite()
+            this.removable = true
         }
     }
 }

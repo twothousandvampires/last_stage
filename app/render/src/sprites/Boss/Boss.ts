@@ -4,6 +4,7 @@ export default class Boss extends UnitSprite{
    
     real_x: number
     real_y: number
+    
     constructor(id: string){
       super(id)
       this.real_x = 10
@@ -35,11 +36,13 @@ export default class Boss extends UnitSprite{
             this.max_frame = 12
             this.max_frame_tick = 10
         }
-        else{
+        else if(this.state === 'dying'){
             this.sprite_name = 'boss1'
             this.y_frame_offset = 0
             this.max_frame = 6
             this.max_frame_tick = 10
+        }
+        else{
             this.removable = true
         }
     }

@@ -10,7 +10,7 @@
                 class="button">DONATE
             </p>
             <p v-if="data.can_buy"
-            @mouseover="$title($event, 'buy item for 30g')"
+            @mouseover="$title($event, 'buy item for 100g')"
             @mouseleave="$closeTitle()"
             @click="$socket.emit('buy')" 
             style="font-size: 20px;cursor: pointer;"

@@ -1,6 +1,6 @@
 import Sprite from "../Sprite";
 
-export default class UnholHealySpirit extends Sprite {
+export default class Heal extends Sprite {
     constructor(id) {
         super(id);
         this.max_frame = 5;

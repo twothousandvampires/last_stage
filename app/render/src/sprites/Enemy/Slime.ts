@@ -41,14 +41,14 @@ export default class Slime extends UnitSprite{
             this.y_frame_offset = 240
             this.max_frame = 8
             this.max_frame_tick = 4
-            this.repeatable = false     
+            this.removable = true    
         }
         else if(this.state === 'dead'){
             this.is_bottom = true
             this.removable = true
             this.y_frame_offset = 320
             this.max_frame = 1
-            this.max_frame_tick = 100   
+            this.max_frame_tick = Math.round( (this.action_time / this.max_frame) / 30)   
         }
         else if(this.state === 'attack'){
             this.y_frame_offset = 160
@@ -86,7 +86,7 @@ export default class Slime extends UnitSprite{
             this.max_frame_tick = 2
         }
         else{
-            this.noSprite()
+            this.removable = true
         }
     }
 }

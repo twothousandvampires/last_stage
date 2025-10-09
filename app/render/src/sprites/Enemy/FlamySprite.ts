@@ -53,17 +53,18 @@ export default class FlamySprite extends UnitSprite{
             this.is_bottom = true
             this.removable = true
             let r = Math.random()
+              this.repeatable = false
             if(r < 0.5){
                 this.sprite_name = 'flamy3'
                 this.max_frame = 9
-                this.max_frame_tick = 100
-                this.repeatable = false
+                this.max_frame_tick = Math.round( (this.action_time / this.max_frame) / 30)
+   
             }
             else{   
                 this.sprite_name = 'flamy3'
                 this.max_frame = 9
-                this.max_frame_tick = 100
-                this.repeatable = false
+                this.max_frame_tick = Math.round( (this.action_time / this.max_frame) / 30)
+              
             }
         }
         else if(this.state === 'attack'){
@@ -122,7 +123,7 @@ export default class FlamySprite extends UnitSprite{
             this.max_frame_tick = 3
         }
         else{
-            this.noSprite()
+            this.removable = true
         }
     }
 }

@@ -99,6 +99,11 @@ import Input from "./Input"
 import HeavenRay from "./src/sprites/Effect/HeavenRay"
 import SorcerersSkull from "./src/sprites/Effect/SorcerersSkull"
 import Bless from "./src/sprites/Effect/Bless"
+import SorceryHalo from "./src/sprites/Effect/SorceryHalo"
+import Reanimator from "./src/sprites/Effect/Reanimator"
+import Helm from "./src/sprites/Effect/Helm"
+import Devour from "./src/sprites/Effect/Devour"
+import Heal from "./src/sprites/Effect/Heal"
 
 export default class Render{
     
@@ -453,7 +458,7 @@ export default class Render{
             return new UnholySpirit(elem.id)
         }
         else if(elem.name === 'heal'){
-            return new UnholySpirit(elem.id)
+            return new Heal(elem.id)
         }
         else if(elem.name === 'heaven ray'){
             return new HeavenRay(elem.id)
@@ -463,7 +468,19 @@ export default class Render{
         }
         else if(elem.name === 'bless'){
             return new Bless(elem.id)
-        }      
+        }
+        else if(elem.name === 'sorcery halo'){
+            return new SorceryHalo(elem.id)
+        }
+        else if(elem.name === 'reanimator'){
+            return new Reanimator(elem.id)
+        }
+        else if(elem.name === 'helm'){
+            return new Helm(elem.id)
+        }
+        else if(elem.name === 'devour'){
+            return new Devour(elem.id)
+        }            
     }
 
     public updateData(data: any){
@@ -559,28 +576,34 @@ export default class Render{
                 this.flipHorizontally(rel_x)
             }
             if(!elem.invisible){
-                 if(elem.by_centr){
-                    this.ctx.drawImage(this.data.map.get(elem.sprite_name),
-                    elem.frame * elem.sprite_w,
-                    elem.y_frame_offset + 1,
-                    elem.sprite_w,
-                    elem.sprite_h - 1,
-                    rel_x - elem.sprite_w / (2 * this.downscale), 
-                    rel_y - (elem.sprite_h / (2 * this.downscale)) - elem.z,
-                    elem.sprite_w / this.downscale, 
-                    elem.sprite_h / this.downscale)
+                let sprite = this.data.map.get(elem.sprite_name)
+                if(sprite){
+                    if(elem.by_centr){
+                        this.ctx.drawImage(
+                        sprite,
+                        elem.frame * elem.sprite_w,
+                        elem.y_frame_offset + 1,
+                        elem.sprite_w,
+                        elem.sprite_h - 1,
+                        rel_x - elem.sprite_w / (2 * this.downscale), 
+                        rel_y - (elem.sprite_h / (2 * this.downscale)) - elem.z,
+                        elem.sprite_w / this.downscale, 
+                        elem.sprite_h / this.downscale)
+                    }
+                    else{
+                        this.ctx.drawImage(
+                        sprite,
+                        elem.frame * elem.sprite_w,
+                        elem.y_frame_offset + 1,
+                        elem.sprite_w,
+                        elem.sprite_h - 1,
+                        rel_x - elem.sprite_w / (2 * this.downscale), 
+                        rel_y - ( (elem.sprite_h / this.downscale) - 1) - elem.z,
+                        elem.sprite_w / this.downscale, 
+                        elem.sprite_h / this.downscale)
+                    }
                 }
-                else{
-                    this.ctx.drawImage(this.data.map.get(elem.sprite_name),
-                    elem.frame * elem.sprite_w,
-                    elem.y_frame_offset + 1,
-                    elem.sprite_w,
-                    elem.sprite_h - 1,
-                    rel_x - elem.sprite_w / (2 * this.downscale), 
-                    rel_y - ( (elem.sprite_h / this.downscale) - 1) - elem.z,
-                    elem.sprite_w / this.downscale, 
-                    elem.sprite_h / this.downscale)
-                }
+                
             }
            
             if(elem.flipped){

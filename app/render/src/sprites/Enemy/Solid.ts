@@ -100,7 +100,7 @@ export default class Solid extends UnitSprite{
             this.max_frame_tick = 3
         }
         else{
-            this.noSprite()
+            this.removable = true
         }
     }
 }

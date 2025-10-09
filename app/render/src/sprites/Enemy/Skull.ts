@@ -77,7 +77,7 @@ export default class Skull extends UnitSprite{
             this.max_frame_tick = 1
         }
         else{
-            this.noSprite()
+            this.removable = true
         }
     }
 }

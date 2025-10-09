@@ -141,16 +141,19 @@
 
     let pickItem = (item_name) => {
         $audio.setSound('menu item take')
+        $closeTitle()
         $socket.emit('pick_item', item_name)
     }
 
     let unpickItem = (item_name) => {
         $audio.setSound('menu item drop')
+        $closeTitle()
         $socket.emit('unpick_item', item_name)
     }
 
     let selectSkill = (skill_name) => {
         $audio.setSound('select_skill')
+        $closeTitle()
         $socket.emit('select_skill', skill_name)
     }
 
@@ -166,6 +169,7 @@
         let b = JSON.parse(localStorage.getItem(name))
         if(b){
             $socket.emit('load_template', b)
+            $closeTitle()
         }
     }
 

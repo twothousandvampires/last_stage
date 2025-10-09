@@ -12,7 +12,10 @@
             </div>
             <div id="meta_info" >
                 <div id="time">
-                    {{ meta.ms / 1000 }}
+                    {{ Math.floor(meta.ms / 1000 )}}
+                </div>
+                <div id="scenario">
+                    {{ meta.scenario}}
                 </div>
                 <div id="killed">
                     {{ meta.killed }}
@@ -136,11 +139,13 @@
 
         $socket.on('close_forgings', () => {
             show_forging = false
+            $closeTitle()
             forging_data = {}
         })
 
         $socket.on('close_upgrades', () => {
             show_upgrades = false
+            $closeTitle()
             upgrade_data = {}
         })
         let tick = 0

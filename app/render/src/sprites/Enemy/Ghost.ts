@@ -44,7 +44,7 @@ export default class Ghost extends UnitSprite{
             this.max_frame = 1
             this.max_frame_tick = 1
         }
-        else if(this.state === 'fake_dead'){
+        else if(this.state === 'dead_with_skull'){
             this.is_bottom = true
             this.y_frame_offset = 320
             this.max_frame = 1
@@ -85,7 +85,7 @@ export default class Ghost extends UnitSprite{
             this.max_frame_tick = 2
         }
         else{
-            this.noSprite()
+            this.removable = true
         }
     }
 }

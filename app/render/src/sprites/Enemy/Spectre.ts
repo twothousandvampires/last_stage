@@ -58,7 +58,7 @@ export default class Spectre extends UnitSprite{
             this.is_bottom = true
             this.sprite_name = 'specter2'
             this.max_frame = 1
-            this.max_frame_tick = 1
+            this.max_frame_tick = Math.round( (this.action_time / this.max_frame) / 30)
             this.removable = true 
         }
         else if(this.state === 'dead_with_skull'){
@@ -138,7 +138,7 @@ export default class Spectre extends UnitSprite{
             this.max_frame_tick = 3
         }
         else{
-            this.noSprite()
+            this.removable = true
         }
     }
 }

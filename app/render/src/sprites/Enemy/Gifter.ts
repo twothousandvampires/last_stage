@@ -20,6 +20,18 @@ export default class Gifter extends UnitSprite{
             this.max_frame = 19
             this.max_frame_tick = 8
         }
+        else if(this.state === 'spawn'){
+            this.sprite_name = 'gifter1'
+            this.y_frame_offset = 0
+            this.max_frame = 19
+            this.max_frame_tick = 8
+        }
+        else if(this.state === 'dying'){
+            this.sprite_name = 'gifter1'
+            this.y_frame_offset = 0
+            this.max_frame = 19
+            this.max_frame_tick = 8
+        }
         else if(this.state === 'dead'){
             this.sprite_name = 'gifter1'
             this.y_frame_offset = 80
@@ -28,7 +40,7 @@ export default class Gifter extends UnitSprite{
             this.removable = true
         }
         else{
-            this.noSprite()
+            this.removable = true
         }
     }
 }

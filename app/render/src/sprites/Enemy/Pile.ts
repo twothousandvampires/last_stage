@@ -27,7 +27,7 @@ export default class Pile extends UnitSprite{
             this.max_frame_tick = 400
                         
         }
-        else if(this.state === 'cast'){
+        else if(this.state === 'attack'){
             this.sprite_name = 'pile1'
             this.y_frame_offset = 160
             this.max_frame = 8
@@ -46,11 +46,11 @@ export default class Pile extends UnitSprite{
             this.sprite_name = 'pile1'
             this.y_frame_offset = 320     
             this.max_frame = 6
-            this.max_frame_tick = 20
+            this.max_frame_tick = Math.round( (this.action_time / this.max_frame) / 30)
             this.repeatable = false
         }
         else{
-            this.noSprite()
+            this.removable = true
         }
 
     }

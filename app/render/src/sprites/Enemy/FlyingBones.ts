@@ -54,15 +54,15 @@ export default class FlyingBones extends UnitSprite{
             this.removable = true
             this.sprite_name = 'fbones3'
             let r = Math.random()
+            this.repeatable = false
             if(r < 0.5){               
                 this.max_frame = 11
-                this.max_frame_tick = 12
-                this.repeatable = false
+                 this.max_frame_tick = Math.round( (this.action_time / this.max_frame) / 30)
+                
             }
             else{              
                 this.max_frame = 11
-                this.max_frame_tick = 12
-                this.repeatable = false
+                 this.max_frame_tick = Math.round( (this.action_time / this.max_frame) / 30)
             }
         }
         else if(this.state === 'dead_with_skull'){
@@ -143,7 +143,7 @@ export default class FlyingBones extends UnitSprite{
             this.max_frame_tick = 3
         }
         else{
-            this.noSprite()
+            this.removable = true
         }
     }
 }

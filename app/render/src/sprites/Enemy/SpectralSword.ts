@@ -41,7 +41,7 @@ export default class SpectralSword extends UnitSprite{
             this.removable = true
             this.y_frame_offset = 320
             this.max_frame = 1
-            this.max_frame_tick = 1  
+            this.max_frame_tick = Math.round( (this.action_time / this.max_frame) / 30)
         }
         else if(this.state === 'attack'){
             this.y_frame_offset = 160
@@ -50,9 +50,6 @@ export default class SpectralSword extends UnitSprite{
         }
         else{
             this.removable = true
-            this.y_frame_offset = 320
-            this.max_frame = 1
-            this.max_frame_tick = 1  
         }
     }
 }
