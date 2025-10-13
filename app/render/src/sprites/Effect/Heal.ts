@@ -9,5 +9,6 @@ export default class Heal extends Sprite {
         this.sprite_h = 40;
         this.sprite_name = 'pack3';
         this.y_frame_offset = 1330;
+        this.removable = true
     }
 }
