@@ -4,7 +4,7 @@
             <p>grace: {{ data.grace }}</p>
             <p>ascend: {{ data.ascend }}</p>
             <p v-if="data.free > 0">free: {{ data.free }}</p>
-            <p v-if="data.can_hold"  
+            <!-- <p v-if="data.can_hold"  
                 @click="$socket.emit('hold_grace')"
                 style="font-size: 20px;cursor: pointer;" 
                 class="button"
@@ -13,7 +13,7 @@
                 })"
                 @mouseleave="$closeTitle()" 
             >HOLD
-            </p>
+            </p> -->
             <p v-if="data.ascend > 0 && data.grace > 0"
                 @click="$socket.emit('hold_ascend')"
                 style="font-size: 20px;cursor: pointer;"
@@ -23,12 +23,12 @@
                 })"
                 @mouseleave="$closeTitle()" 
             >REROLL</p>
-            <p v-if="data.life >= 4"
+            <p v-if="data.life >= 1 && data.can_hold"
                 @click="$socket.emit('sacrifice')"
                 style="font-size: 20px;cursor: pointer;"
                 class="button" 
                 @mouseover="$title($event, {
-                    text: 'lose all life to get 1 grace'
+                    text: 'lose all life and get equals grace'
                 })"
                 @mouseleave="$closeTitle()" 
             >sacrifice</p>
