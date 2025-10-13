@@ -3,6 +3,7 @@
         <div style="display: flex;flex-direction: row; justify-content: space-around;align-items: center;">
             <p>grace: {{ data.grace }}</p>
             <p>ascend: {{ data.ascend }}</p>
+            <p v-if="data.free > 0">free: {{ data.free }}</p>
             <p v-if="data.can_hold"  
                 @click="$socket.emit('hold_grace')"
                 style="font-size: 20px;cursor: pointer;" 
