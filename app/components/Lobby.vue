@@ -123,10 +123,11 @@
     import { ref } from 'vue';
     import { useNuxtApp } from '#app';
    
-    const { $socket, $audio, $title, $closeTitle } = useNuxtApp();
+    const { $getInstance, $audio, $title, $closeTitle } = useNuxtApp();
 
     let lobby_data = ref([])
-
+    let $socket = $getInstance()
+    
     let increaseStat = (stat) => {
         $socket.emit('increase_stat', stat)
     }
@@ -179,13 +180,17 @@
     }
 
     let item_pull = ref([])
-
+   
     onMounted(() => {
         $closeTitle()
-        $socket.connect();
+
+        $socket.emit('get_lobby_data')
+
         $socket.on('update_lobby_data', (data, items) => {
             data.sort((a, b) => a.id === $socket.id ? - 1 : 1)
+
             lobby_data.value = []
+            
             data.forEach(element => {
                 if(element.id === $socket.id) element.is_player = true
                 lobby_data.value.push(element)
@@ -193,12 +198,6 @@
 
             item_pull.value = []
             items.forEach(elem => item_pull.value.push(elem))
-
-           
         })
     })
-
-    onUnmounted(() => {
-        $socket.off();
-    });
 </script>

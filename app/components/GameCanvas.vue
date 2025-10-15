@@ -40,8 +40,8 @@
     import Render from '~/render/Render';
     import { useNuxtApp } from '#app';
     import { reactive } from 'vue';
-   
-    const { $socket, $audio, $title, $closeTitle } = useNuxtApp();
+
+    const { $getInstance, $audio, $title, $closeTitle } = useNuxtApp();
 
     let client = reactive({
         life: 0,
@@ -58,6 +58,8 @@
 
     let statuses = ref([])
     let meta = reactive({})
+    
+    let $socket = $getInstance()
 
     let updateClientData = (data) => {
         if(!data) return
@@ -100,10 +102,23 @@
         $closeTitle()
         let render = new Render($socket)
 
+        let updateMessages = (messages, client) => {
+            messages.forEach(msg => {
+                console.log(msg)
+                if(!msg.id || msg.id === client.id){
+                    $title(null, msg.text)
+                    setTimeout(() => {
+                        $closeTitle()
+                    }, 2000)
+                }
+            })
+        }
+
         $socket.on('tick_data', (server_data, server_time) => {
             let client = render.actors.get($socket.id)
             $audio.updateData(server_data, client)
             render.updateData(server_data)
+            updateMessages(server_data.messedges, client)
             meta = server_data.meta
             updateClientData(client)
         })
@@ -130,6 +145,8 @@
         $socket.on('show_upgrades', (data) => {
             show_upgrades = true
             upgrade_data = data
+            
+            console.log(upgrade_data.stats)
         })
 
         $socket.on('show_forgings', (data) => {
@@ -159,5 +176,4 @@
             }
         }, 30)
     })
-
 </script>

@@ -2,23 +2,32 @@ import { io } from 'socket.io-client';
 
 export default defineNuxtPlugin(() => {
     const config = useRuntimeConfig()
-
-    console.log(config.public.baseUrl)
-    const socket = io(config.public.baseUrl, {
+    
+    let socket = io(config.public.baseUrl, {
         autoConnect: false,
     });
 
-    socket.on('connect', (data) => {
-        console.log('connected');
-    });
-    
-    socket.on('server_status', (data) => {
-        
-    })
+    socket.connect()
+
+    let connectTo = (url) => {
+        if (socket) {
+            socket.disconnect()
+            socket = null
+        }
+        socket = io(url, {
+            autoConnect: false,
+        });
+        socket.connect()
+    };
+
+    let getInstance = () => {
+        return socket
+    }
 
     return {
         provide: {
-            socket: socket
+            getInstance: getInstance,
+            connectTo: connectTo
         }
     };
 });

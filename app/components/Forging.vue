@@ -1,6 +1,8 @@
 <template>
     <div id="forge">
-        <div style="display: flex;flex-direction: column; justify-content: space-around;align-items: center;">
+        <Stats :stats="data.stats"></Stats>
+        <div>
+            <div style="display: flex;flex-direction: row; justify-content: center;align-items: center;gap: 10px">
             <p>gold: {{ data.gold }}</p>
             <p v-if="data.gold >= 20"
                 @mouseover="$title($event, 'lose 20g for getting 1 grace')"
@@ -17,8 +19,8 @@
             class="button"> BUY ITEM
             </p>
         </div>
-        <div style="display: flex; flex-direction: row; justify-content: space-around;overflow-x: auto;">
-            <div v-for="item in data.items" style="display: flex; flex-direction: column;align-items: center;min-width: 220px;">
+        <div style="grid-template-columns: 220px 220px; display: grid;">
+            <div v-for="item in data.items" style="display: flex; flex-direction: column;align-items: center;">
                 <img
                     :class="item.forge.length < item.max_forgings ? 'button' : ''"
                     @mouseover="$title($event, {
@@ -46,6 +48,7 @@
                     </div>         
                 </p>
             </div>
+        </div>
         </div>
     </div>
     <div v-if="items.length" id="suggest">

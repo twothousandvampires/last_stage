@@ -1,59 +1,67 @@
 <template>
     <div id="upgrades">
-        <div style="display: flex;flex-direction: row; justify-content: space-around;align-items: center;">
-            <p>grace: {{ data.grace }}</p>
-            <p>ascend: {{ data.ascend }}</p>
-            <p v-if="data.free > 0">free: {{ data.free }}</p>
-            <!-- <p v-if="data.can_hold"  
-                @click="$socket.emit('hold_grace')"
-                style="font-size: 20px;cursor: pointer;" 
-                class="button"
-                @mouseover="$title($event, {
-                    text: 'you can not learn upgrades in this session but get 20% extra grace'
-                })"
-                @mouseleave="$closeTitle()" 
-            >HOLD
-            </p> -->
-            <p v-if="data.ascend > 0 && data.grace > 0"
-                @click="$socket.emit('hold_ascend')"
-                style="font-size: 20px;cursor: pointer;"
-                class="button" 
-                @mouseover="$title($event, {
-                    text: 'lose 1 ascend level to reroll upgrades'
-                })"
-                @mouseleave="$closeTitle()" 
-            >REROLL</p>
-            <p v-if="data.life >= 1 && data.can_hold"
-                @click="$socket.emit('sacrifice')"
-                style="font-size: 20px;cursor: pointer;"
-                class="button" 
-                @mouseover="$title($event, {
-                    text: 'lose all life and get equals grace'
-                })"
-                @mouseleave="$closeTitle()" 
-            >sacrifice</p>
-        </div>
-        <div style="display: flex; flex-direction: row; justify-content: space-around;">
-            <div v-for="upgrade in data.upgrades" style="display: flex; flex-direction: column;align-items: center;">
-                <img
+        <Stats :stats="data.stats"></Stats>
+        <div>
+            <div style="display: flex;flex-direction: row; justify-content: space-around;align-items: center;">
+                <p style="font-size: 20px;">grace - <span style="color: #8a0e0e;">{{ data.grace }}</span></p>
+                <p style="font-size: 20px;">ascend - <span style="color: #8a0e0e;">{{ data.ascend }}</span></p>
+                <p v-if="data.free > 0">free upgrades- {{ data.free }}</p>
+                <!-- <p v-if="data.can_hold"  
+                    @click="$socket.emit('hold_grace')"
+                    style="font-size: 20px;cursor: pointer;" 
                     class="button"
                     @mouseover="$title($event, {
-                        main_title: upgrade.name,
-                        text: upgrade.desc
+                        text: 'you can not learn upgrades in this session but get 20% extra grace'
                     })"
                     @mouseleave="$closeTitle()" 
-                    @click="$socket.emit('select_upgrade', upgrade.name)"
-                    width="60px"
-                    height="60px"
-                    :src="`/icons/${upgrade.name}.png`" alt="">
-                    <p>
-                    {{ upgrade.name }}({{ upgrade.cost }})
-                </p>
+                >HOLD
+                </p> -->
+                <p v-if="data.ascend > 0 && data.grace > 0"
+                    @click="$socket.emit('hold_ascend')"
+                    style="font-size: 20px;cursor: pointer;"
+                    class="button" 
+                    @mouseover="$title($event, {
+                        text: 'lose 1 ascend level to reroll upgrades'
+                    })"
+                    @mouseleave="$closeTitle()" 
+                >REROLL</p>
+                <p v-if="data.life >= 1 && data.can_hold"
+                    @click="$socket.emit('sacrifice')"
+                    style="font-size: 20px;cursor: pointer;"
+                    class="button" 
+                    @mouseover="$title($event, {
+                        text: 'lose all life and get equals grace you can not learn upgrades in this time'
+                    })"
+                    @mouseleave="$closeTitle()" 
+                >sacrifice</p>
+            </div>
+            <div style="display: flex; flex-direction: row; justify-content: space-around;">
+                <div v-for="upgrade in data.upgrades" style="display: flex; flex-direction: column;align-items: center; min-width: 160px;">
+                    <img
+                        class="button"
+                        @mouseover="$title($event, {
+                            main_title: upgrade.name,
+                            text: upgrade.desc
+                        })"
+                        @mouseleave="$closeTitle()" 
+                        @click="$socket.emit('select_upgrade', upgrade.name)"
+                        width="60px"
+                        height="60px"
+                        :src="`/icons/${upgrade.name}.png`" alt="">
+                        <p>
+                            {{ upgrade.name }}
+                        </p>
+                        <p style="font-size: 14px;">
+                           Cost: {{ upgrade.cost }}
+                        </p>
+                </div>
             </div>
         </div>
     </div>
 </template>
 <script setup>
+import Stats from './Stats.vue';
+
     const { $socket, $title, $closeTitle } = useNuxtApp();
     const props = defineProps({
     data: {

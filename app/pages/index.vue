@@ -1,8 +1,23 @@
 <template>
     <div id="wrap">
         <Info v-if="!game_is_started"></Info>
-        <GameCanvas @end="game_is_started = false" v-if="game_is_started"></GameCanvas> 
-        <Lobby v-else></Lobby>
+        <template v-if="state === 1">
+            <div style="color: white; position: absolute; top:50%; left: 50%; transform: translate(-50%, -50%);">
+                <div>
+                    <h1 style="text-align: center;">LOBBIES</h1>
+                </div>
+                <div>
+                    <div v-if="lobbies_data.length" style="display: flex;flex-direction: row; gap: 24px">
+                        <div @click="connect(data.port)" class="button" style="padding: 20px 40px;" v-for="data in lobbies_data">
+                            <p>{{ data.name }}</p>
+                            <p>{{ data.players }} / {{ data.maxPlayers }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+        <GameCanvas v-else-if="state === 2"></GameCanvas> 
+        <Lobby v-else-if="state === 3"></Lobby>
     </div>
 </template>
 <script setup>
@@ -11,13 +26,34 @@
     import { ref } from 'vue';
     import { useNuxtApp } from '#app';
    
-    const { $socket } = useNuxtApp();
+    let { $getInstance, $connectTo } = useNuxtApp();
 
-    let game_is_started = ref(false)
+    let state = ref(1)
+    let lobbies_data = ref([])
 
-     onMounted(() => {
-        $socket.on('start', () => {
-            game_is_started.value = true
+    let socket = $getInstance()
+
+    let connect = (port) => {
+        $connectTo('http://localhost:' + port)
+        socket = $getInstance()
+
+        socket.on('connect_to_lobby', () => {
+            state.value = 3
         })
-     })
+
+        socket.on('start', () => {
+            state.value = 2
+        })
+    }
+    onMounted(() => {
+        socket.on('lobbies_list', (data) => {
+            lobbies_data.value = data
+        })
+
+        socket.on('lobby_updated', (data) => {
+            lobbies_data.value = data
+        })
+
+        socket.emit('get_lobbies')
+    })
 </script>

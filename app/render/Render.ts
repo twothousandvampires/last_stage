@@ -104,6 +104,11 @@ import Reanimator from "./src/sprites/Effect/Reanimator"
 import Helm from "./src/sprites/Effect/Helm"
 import Devour from "./src/sprites/Effect/Devour"
 import Heal from "./src/sprites/Effect/Heal"
+import Ultimate1 from "./src/sprites/Effect/Ultimate1"
+import Ultimate2 from "./src/sprites/Effect/Ultimate2"
+import Ultimate3 from "./src/sprites/Effect/Ultimate3"
+import UltimatumArena from "./src/sprites/Effect/UltimatumArena"
+import FlamyRing from "./src/sprites/Effect/FlamyRing"
 
 export default class Render{
     
@@ -480,7 +485,22 @@ export default class Render{
         }
         else if(elem.name === 'devour'){
             return new Devour(elem.id)
-        }            
+        }
+        else if(elem.name === 'ultimatum1'){
+            return new Ultimate1(elem.id)
+        }
+        else if(elem.name === 'ultimatum2'){
+            return new Ultimate2(elem.id)
+        }
+        else if(elem.name === 'ultimatum3'){
+            return new Ultimate3(elem.id)
+        }
+        else if(elem.name === 'ultimatum arena'){
+            return new UltimatumArena(elem.id)
+        }
+        else if(elem.name === 'flamy ring'){
+            return new FlamyRing(elem.id)
+        }
     }
 
     public updateData(data: any){

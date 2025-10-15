@@ -364,6 +364,26 @@ export default class Sound{
 
             result.max_volume = 0.6
         }
+
+        else if(name === 'challenge start'){
+            result.src = 'concentration.wav'
+         
+            result.max_volume = 0.8
+        }
+
+        else if(name === 'challenge failed'){
+            let v = ['confuse.wav', 'amplifydamage.wav']
+            
+            result.src = v[Math.floor(Math.random() * v.length)]
+         
+            result.max_volume = 0.8
+        }
+
+        else if(name === 'challenge done'){
+            result.src = 'handofgod.wav'
+         
+            result.max_volume = 0.8
+        }
        
         return result
   
