@@ -3,18 +3,18 @@ import { io } from 'socket.io-client';
 export default defineNuxtPlugin(() => {
     const config = useRuntimeConfig()
     
-    let socket = io(config.public.baseUrl, {
+    let socket = io(config.public.baseIp + ':' + config.public.basePort, {
         autoConnect: false,
     });
 
     socket.connect()
 
-    let connectTo = (url) => {
+    let connectTo = (port) => {
         if (socket) {
             socket.disconnect()
             socket = null
         }
-        socket = io(url, {
+        socket = io(config.public.baseIp + ':' + port, {
             autoConnect: false,
         });
         socket.connect()

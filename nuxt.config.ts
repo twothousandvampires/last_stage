@@ -14,7 +14,8 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      baseUrl: process.env.BASE_URL
+      basePort: process.env.BASE_PORT,
+      baseIp: process.env.BASE_IP,
     }
   },
   plugins: [
