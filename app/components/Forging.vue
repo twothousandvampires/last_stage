@@ -3,16 +3,19 @@
         <Stats :stats="data.stats"></Stats>
         <div>
             <div style="display: flex;flex-direction: row; justify-content: center;align-items: center;gap: 10px">
-            <p>gold: {{ data.gold }}</p>
+            <p style="font-size: 30px; color: gold;"
+            @mouseover="$title($event, 'Click on item for unlocking forgings. Cost depends on existing count.')"
+            @mouseleave="$closeTitle()"
+            >gold: {{ data.gold }}</p>
             <p v-if="data.gold >= 20"
-                @mouseover="$title($event, 'lose 20g for getting 1 grace')"
+                @mouseover="$title($event, 'Pay 20 gold and get one grace.')"
                 @mouseleave="$closeTitle()"
                 @click="$socket.emit('donate')"
                 style="font-size: 20px;cursor: pointer;"
                 class="button">DONATE
             </p>
             <p v-if="data.can_buy"
-            @mouseover="$title($event, 'buy item for 100g')"
+            @mouseover="$title($event, 'Buy an item for 100 gold.')"
             @mouseleave="$closeTitle()"
             @click="$socket.emit('buy')" 
             style="font-size: 20px;cursor: pointer;"
@@ -24,15 +27,15 @@
                 <img
                     :class="item.forge.length < item.max_forgings ? 'button' : ''"
                     @mouseover="$title($event, {
-                        main_title: item.name,
+                        main_title: getUnlockCost(item),
                         text: item.description
                     })"
                     @mouseleave="$closeTitle()" 
-                        @click="$socket.emit('unlock_forging', item.name); item.length = 0"
-                        width="60px"
-                        height="60px"
-                        :src="`/icons/${item.name}.png`" alt="">
-                        <p>
+                    @click="$socket.emit('unlock_forging', item.name); item.length = 0"
+                    width="60px"
+                    height="60px"
+                    :src="`/icons/${item.name}.png`" alt="">
+                    <p>
                     {{ item.name }}
                     <div style="display: flex; flex-direction: column;">
                         <p  :style="forge.can ? '' : 'background-color: red'" v-for="(forge, index) in item.forge"
@@ -87,6 +90,11 @@
     let items = ref([])
     let forgings =  ref([])
     let id = ref(0)
+
+    let getUnlockCost = (item) => {
+        if(item.forge.length >= item.max_forgings) return 'maximum forgings'
+        return 'forging unlock cost: ' + ((item.forge.length * 15) + 15)
+    }
 
     $socket.on('suggest_items', (data) => {
         console.log(data)

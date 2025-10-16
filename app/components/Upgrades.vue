@@ -3,8 +3,19 @@
         <Stats :stats="data.stats"></Stats>
         <div>
             <div style="display: flex;flex-direction: row; justify-content: space-around;align-items: center;">
-                <p style="font-size: 20px;">grace - <span style="color: #8a0e0e;">{{ data.grace }}</span></p>
-                <p style="font-size: 20px;">ascend - <span style="color: #8a0e0e;">{{ data.ascend }}</span></p>
+                <p style="font-size: 20px;"
+                @mouseover="$title($event, {
+                        text: 'This is spent on learning abilities.'
+                })"
+                @mouseleave="$closeTitle()"
+                >grace - <span style="color: #8a0e0e;">{{ data.grace }}</span>
+                </p>
+                <p style="font-size: 20px;"
+                @mouseover="$title($event, {
+                        text: 'You receive this when you learn skills, it affects the power of the improvements you can get.'
+                })"
+                @mouseleave="$closeTitle()"
+                >ascent - <span style="color: #8a0e0e;">{{ data.ascend }}</span></p>
                 <p v-if="data.free > 0">free upgrades- {{ data.free }}</p>
                 <!-- <p v-if="data.can_hold"  
                     @click="$socket.emit('hold_grace')"
@@ -21,7 +32,7 @@
                     style="font-size: 20px;cursor: pointer;"
                     class="button" 
                     @mouseover="$title($event, {
-                        text: 'lose 1 ascend level to reroll upgrades'
+                        text: 'Pay 1 ascent point to reroll upgrades.'
                     })"
                     @mouseleave="$closeTitle()" 
                 >REROLL</p>
@@ -30,7 +41,7 @@
                     style="font-size: 20px;cursor: pointer;"
                     class="button" 
                     @mouseover="$title($event, {
-                        text: 'lose all life and get equals grace you can not learn upgrades in this time'
+                        text: 'Lose all life and get equals amount of grace, you can not learn upgrades in this time.'
                     })"
                     @mouseleave="$closeTitle()" 
                 >sacrifice</p>

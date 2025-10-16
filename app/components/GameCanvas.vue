@@ -32,15 +32,15 @@
                 width="60px" height="60px" :title="status.desc" :src="`/icons/${status.name}.png`" alt="">
             </div>
         </div>
-        <div v-if="show_record" id="add-record"> 
-            <p>you are have kiled {{ record_data }}</p>
-            <p>tell us you name challenger</p>
-            <input v-model="record_name" type="text">
-            <button @click="sendRecord()">confirm</button>
-        </div>
     </div>
     <Upgrades v-if="show_upgrades" :data="upgrade_data"></Upgrades>
     <Forging v-if="show_forging" :data="forging_data"></Forging>
+    <div v-if="show_record" id="add-record"> 
+        <p>you are have killed {{ record_data }}</p>
+        <p>tell us you name challenger</p>
+        <input v-model="record_name" type="text">
+        <button @click="sendRecord()">confirm</button>
+    </div>
     
 </template>
 <script setup>
@@ -77,8 +77,6 @@
 
     let statuses = ref([])
     let meta = reactive({})
-    
-    
 
     let updateClientData = (data) => {
         if(!data) return
