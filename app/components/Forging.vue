@@ -74,8 +74,9 @@
     </div>
 </template>
 <script setup>
-    const { $socket, $title, $closeTitle } = useNuxtApp();
-        
+    const { $getInstance, $title, $closeTitle } = useNuxtApp();
+    
+    let $socket = $getInstance()
     const props = defineProps({
     data: {
         type: Object,
