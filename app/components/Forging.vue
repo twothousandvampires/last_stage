@@ -84,7 +84,7 @@
     data: {
         type: Object,
         required: true,
-    },
+        },
     });
 
     let items = ref([])
@@ -97,7 +97,6 @@
     }
 
     $socket.on('suggest_items', (data) => {
-        console.log(data)
         items.value = data
     })
 

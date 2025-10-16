@@ -29,7 +29,7 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        z-index: 666;
+        z-index: 800;
         position: fixed;
         width: fit-content;
         top: 50%;
@@ -37,6 +37,7 @@
         transform: translate(-50%, -50%);
         background-color: #b8b85c;
         border: 6px solid #7a7a3a;
+        gap: 10px;
     }
     #main{
         background-color: black;

@@ -35,13 +35,7 @@
     </div>
     <Upgrades v-if="show_upgrades" :data="upgrade_data"></Upgrades>
     <Forging v-if="show_forging" :data="forging_data"></Forging>
-    <div v-if="show_record" id="add-record"> 
-        <p>you are have killed {{ record_data }}</p>
-        <p>tell us you name challenger</p>
-        <input v-model="record_name" type="text">
-        <button @click="sendRecord()">confirm</button>
-    </div>
-    
+    <Record v-if="show_record" :data="record_data"></Record>
 </template>
 <script setup>
     import Render from '~/render/Render';
@@ -57,14 +51,6 @@
         max_energy: 0,
         abilities: []
     })
-
-    let sendRecord = () => {
-        if(record_name === '') return
-
-        $socket.emit('add_record', record_name)
-    }
-
-    let record_name = ''
 
     let show_upgrades = ref(false)
     let upgrade_data = reactive({})
@@ -121,7 +107,6 @@
 
         let updateMessages = (messages, client) => {
             messages.forEach(msg => {
-                console.log(msg)
                 if(!msg.id || msg.id === client.id){
                     $title(null, msg.text)
                     setTimeout(() => {
@@ -152,6 +137,12 @@
         })
 
         $socket.on('game_is_over', () => {
+            if(show_record){
+                setTimeout(() => {
+                    location.reload()
+                }, 3000)
+            }
+            show_record = false
             $socket.disconnect()
         })
 
@@ -164,11 +155,6 @@
             record_data = data
 
             console.log(show_record, data)
-
-            setTimeout(() => {
-                record_name = '666 warrior'
-                sendRecord()
-            }, 30000)
         })
 
         $socket.on('show_upgrades', (data) => {

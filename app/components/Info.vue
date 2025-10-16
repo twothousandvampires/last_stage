@@ -43,11 +43,9 @@
 
   onMounted(() => {
 
-    socket.on('records', (records_data) => {
-      let data = JSON.parse(records_data)
-      console.log(data)
+    socket.on('records', async (records_data) => {
+      let data = await JSON.parse(records_data)
       records.value = data
-      console.log(records.value)
     })  
 
   })

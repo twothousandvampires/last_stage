@@ -15,7 +15,6 @@ export default defineNuxtPlugin(() => {
     }
     let createTitle = (e, title_text) => {
         closeTitle()
-        console.log(e, title_text)
         let title_div = document.createElement('div')
         let text =  document.createElement('p')
      
