@@ -8,7 +8,7 @@
                         <img src="/preview/lobby.png" alt="">
                     </div>
                     <div>
-                        <div v-if="lobbies_data.length" style="display: flex;flex-direction: row; gap: 24px">
+                        <div v-if="lobbies_data.length" style="display: flex;flex-direction: row; gap: 24px; justify-content: center;">
                             <div :style="'background-color:' +  (data.started === 'true' || (data.players >= data.maxPlayers) ? '#3a0000' : '#8a2121') + ';padding: 20px 40px; color:#e0e07a;'" @click="connect(data)" class="button" v-for="data in lobbies_data">
                                 <p>{{ data.name }}</p>
                                 <p>{{ data.players }} / {{ data.maxPlayers }}</p>
