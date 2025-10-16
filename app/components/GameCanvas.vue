@@ -154,7 +154,7 @@
         })
 
         $socket.on('game_is_over', () => {
-            location.reload()
+            $socket.disconnect()
         })
 
         $socket.on('status_end', (status_name) => {
