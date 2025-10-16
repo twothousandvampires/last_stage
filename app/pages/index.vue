@@ -2,7 +2,7 @@
     <div id="wrap">
         <Info v-if="state === 1"></Info>
         <template v-if="state === 1">
-            <div style="width: 100vw; height: 100vh; background-image: url('/preview/logo.png');background-repeat: no-repeat;background-size: 25%;background-position: center 0%;">
+            <div style="background-image: url('/preview/logo.png');background-repeat: no-repeat;background-size: 25%;background-position: center 0%;">
                 <div style="color: #7a6b5c; position: absolute; top:50%; left: 50%; transform: translate(-50%, -50%);">
                     <div style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
                         <img src="/preview/666.gif" alt="">
