@@ -1,11 +1,55 @@
 <template>
   <div id="top-panel">
     <p style="margin-right: 16px;" @click="show_info = !show_info">info</p>
-    <p>records</p>
+    <p @click="socket.emit('get_records');show_records = !show_records">records</p>
+
     <GameInfo v-if="show_info" @click="show_info = false"></GameInfo> 
+
+    <div id ="records" v-if="show_records" @click="show_records = false">
+        <div style="display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;text-align: center">
+          <p>class</p>
+          <p>name</p>
+          <p>time</p>
+          <p>kills</p>
+          <p>waves</p>
+          <p>date</p>
+        </div>
+ 
+        <div v-for="record in records" style="display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;text-align: center;">
+          <p> {{ record.class }}</p>
+          <p> {{ record.name }}</p>
+          <p> {{ record.time / 1000 }}</p>
+          <p> {{ record.kills }}</p>
+          <p> {{ record.waves ? record.waves : "unknown"}}</p>
+          <p> {{ record.created.split('T')[0] }}</p>
+        </div>
+    </div>
   </div>
 </template>
 <script setup>
   import { ref } from 'vue';
+  import { useNuxtApp } from '#app';
+  
+  let { $getInstance } = useNuxtApp();
   let show_info = ref(false)
+  let show_records = ref(false)
+  let records = ref([])
+
+  let socket = $getInstance()
+
+  onMounted(() => {
+
+    socket.on('records', (records_data) => {
+      let data = JSON.parse(records_data)
+      console.log(data)
+      records.value = data
+      console.log(records.value)
+    })  
+
+  })
+
 </script>

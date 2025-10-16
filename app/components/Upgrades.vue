@@ -62,7 +62,10 @@
 <script setup>
 import Stats from './Stats.vue';
 
-    const { $socket, $title, $closeTitle } = useNuxtApp();
+    const { $getInstance, $title, $closeTitle } = useNuxtApp();
+
+    let $socket = $getInstance()
+
     const props = defineProps({
     data: {
         type: Object,

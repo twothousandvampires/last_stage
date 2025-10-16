@@ -1,15 +1,15 @@
 <template>
     <div id="wrap">
-        <Info v-if="!game_is_started"></Info>
+        <Info v-if="state === 1"></Info>
         <template v-if="state === 1">
             <div style="width: 100vw; height: 100vh; background-image: url('/preview/logo.png');background-repeat: no-repeat;background-size: 25%;background-position: center 0%;">
                 <div style="color: #7a6b5c; position: absolute; top:50%; left: 50%; transform: translate(-50%, -50%);">
-                    <div>
-                        <h1 style="text-align: center;">LOBBIES</h1>
+                    <div style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
+                        <img src="/preview/lobby.png" alt="">
                     </div>
                     <div>
-                        <div v-if="lobbies_data.length" style="display: flex;flex-direction: row; gap: 24px">
-                            <div :style="'background-color:' +  (data.started === 'true' || (data.players >= data.maxPlayers) ? '#3a0000' : '#8a2121') + ';padding: 20px 40px;'" @click="connect(data)" class="button" v-for="data in lobbies_data">
+                        <div v-if="lobbies_data.length" style="display: flex;flex-direction: row; gap: 24px; justify-content: center;">
+                            <div :style="'background-color:' +  (data.started === 'true' || (data.players >= data.maxPlayers) ? '#3a0000' : '#8a2121') + ';padding: 20px 40px; color:#e0e07a;'" @click="connect(data)" class="button" v-for="data in lobbies_data">
                                 <p>{{ data.name }}</p>
                                 <p>{{ data.players }} / {{ data.maxPlayers }}</p>
                             </div>
@@ -28,7 +28,7 @@
     import { ref } from 'vue';
     import { useNuxtApp } from '#app';
    
-    let { $getInstance, $connectTo } = useNuxtApp();
+    let { $getInstance, $connectTo, $audio } = useNuxtApp();
 
     let state = ref(1)
     let lobbies_data = ref([])
@@ -39,7 +39,7 @@
         if(data.started === 'true') return
         if(data.players >= data.maxPlayers) return
 
-        $connectTo('http://localhost:' + data.port)
+        $connectTo(data.port)
         socket = $getInstance()
 
         socket.on('connect_to_lobby', () => {
@@ -54,6 +54,8 @@
         socket.on('lobbies_list', (data) => {
             lobbies_data.value = data
         })
+
+        // $audio.lobby_back.play()
 
         socket.on('lobby_updated', (data) => {
             lobbies_data.value = data

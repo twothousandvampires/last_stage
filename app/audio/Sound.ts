@@ -10,11 +10,11 @@ export default class Sound{
 
         this.back = new Audio()
         this.back.src = 'sounds/99_Cavern_of_Lost_Souls.mp3'
-        this.back.volume = 0.2
+        this.back.volume = 0.1
 
         this.lobby_back = new Audio()
         this.lobby_back.src = 'sounds/ls_stage_lobby.mp3'
-        this.lobby_back.volume = 0.15
+        this.lobby_back.volume = 0.1
     }
 
     static distance(x, y, x1, y1){

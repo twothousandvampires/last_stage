@@ -32,9 +32,16 @@
                 width="60px" height="60px" :title="status.desc" :src="`/icons/${status.name}.png`" alt="">
             </div>
         </div>
+        <div v-if="show_record" id="add-record"> 
+            <p>you are have kiled {{ record_data }}</p>
+            <p>tell us you name challenger</p>
+            <input v-model="record_name" type="text">
+            <button @click="sendRecord()">confirm</button>
+        </div>
     </div>
     <Upgrades v-if="show_upgrades" :data="upgrade_data"></Upgrades>
     <Forging v-if="show_forging" :data="forging_data"></Forging>
+    
 </template>
 <script setup>
     import Render from '~/render/Render';
@@ -42,6 +49,7 @@
     import { reactive } from 'vue';
 
     const { $getInstance, $audio, $title, $closeTitle } = useNuxtApp();
+    let $socket = $getInstance()
 
     let client = reactive({
         life: 0,
@@ -50,8 +58,19 @@
         abilities: []
     })
 
+    let sendRecord = () => {
+        if(record_name === '') return
+
+        $socket.emit('add_record', record_name)
+    }
+
+    let record_name = ''
+
     let show_upgrades = ref(false)
     let upgrade_data = reactive({})
+
+    let show_record = ref(false)
+    let record_data = reactive(1)
 
     let show_forging = ref(false)
     let forging_data = reactive({})
@@ -59,7 +78,7 @@
     let statuses = ref([])
     let meta = reactive({})
     
-    let $socket = $getInstance()
+    
 
     let updateClientData = (data) => {
         if(!data) return
@@ -96,10 +115,10 @@
         }
     }
 
-    const emit = defineEmits(['end']);
-
     onMounted(() => {
         $closeTitle()
+        // $audio.lobby_back.pause()
+        // $audio.back.play()
         let render = new Render($socket)
 
         let updateMessages = (messages, client) => {
@@ -142,11 +161,21 @@
             statuses.value = statuses.value.filter(elem => elem.name != status_name)
         })
         
+        $socket.on('suggers_record', (data) => {
+            show_record = true
+            record_data = data
+
+            console.log(show_record, data)
+
+            setTimeout(() => {
+                record_name = '666 warrior'
+                sendRecord()
+            }, 30000)
+        })
+
         $socket.on('show_upgrades', (data) => {
             show_upgrades = true
             upgrade_data = data
-            
-            console.log(upgrade_data.stats)
         })
 
         $socket.on('show_forgings', (data) => {
