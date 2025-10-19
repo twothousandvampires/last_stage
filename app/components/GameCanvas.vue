@@ -137,11 +137,6 @@
         })
 
         $socket.on('game_is_over', () => {
-            if(show_record){
-                setTimeout(() => {
-                    location.reload()
-                }, 3000)
-            }
             show_record = false
             $socket.disconnect()
         })

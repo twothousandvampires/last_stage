@@ -59,7 +59,7 @@
             <div class="right_block">
                 <div class="right_top" :style="value.ready ? 'background-color: #7a7a3a' : ''">
                     <div class="select_and_preview">
-                        <img @click="$socket.emit('set_start_scenario', 'learning')" width="160px" height="160px" :src="`/preview/${value.template.name}.gif`" alt="{{value.template.name}}">
+                        <img width="160px" height="160px" :src="`/preview/${value.template.name}.gif`" alt="{{value.template.name}}">
                     </div>
                     <div class="select_ready_equip">
                         <select @change="($event) => {$socket.emit('change_class', $event.target.value)}" style="visibility: visible; position: static; width: 100%;" name="" id="">

@@ -2,13 +2,14 @@
 export default defineNuxtConfig({
   app: {
     head: {
-      title: 'test title'
+      title: 'last stage',
+      
     }
   },
   $development: {
     app:{
       head: {
-        title: 'dev'
+        title: 'last stage'
       }
     }
   },

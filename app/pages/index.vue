@@ -1,23 +1,22 @@
 <template>
     <div id="wrap">
         <Info v-if="state === 1"></Info>
-        <template v-if="state === 1">
-            <div style="background-image: url('/preview/logo.png');background-repeat: no-repeat;background-size: 25%;background-position: center 0%;">
-                <div style="color: #7a6b5c; position: absolute; top:50%; left: 50%; transform: translate(-50%, -50%);">
-                    <div style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
-                        <img src="/preview/666.gif" alt="">
-                    </div>
-                    <div>
-                        <div v-if="lobbies_data.length" style="display: flex;flex-direction: row; gap: 24px; justify-content: center;">
-                            <div :style="'background-color:' +  (data.started === 'true' || (data.players >= data.maxPlayers) ? '#3a0000' : '#8a2121') + ';padding: 20px 40px; color:#e0e07a;'" @click="connect(data)" class="button" v-for="data in lobbies_data">
-                                <p>{{ data.name }}</p>
-                                <p>{{ data.players }} / {{ data.maxPlayers }}</p>
-                            </div>
-                        </div>
+        <div v-if="state === 1" style="color: #7a6b5c; position: absolute; top:40%; left: 50%; transform: translate(-50%, -50%);display: flex;flex-direction: column; align-items: center;">
+            <div>
+                <img width="400px" height="auto" src="/preview/logo.png" alt="">
+            </div>
+            <div style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
+                <img src="/preview/666.gif" alt="">
+            </div>
+            <div>
+                <div v-if="lobbies_data.length" style="display: flex;flex-direction: row; gap: 24px; justify-content: center;">
+                    <div :style="'background-color:' +  (data.started === 'true' || (data.players >= data.maxPlayers) ? '#3a0000' : '#8a2121') + ';padding: 20px 40px; color:#e0e07a;'" @click="connect(data)" class="button" v-for="data in lobbies_data">
+                        <p>{{ data.name }}</p>
+                        <p>{{ data.players }} / {{ data.maxPlayers }}</p>
                     </div>
                 </div>
-            </div>    
-        </template>
+            </div>
+        </div>    
         <GameCanvas v-else-if="state === 2"></GameCanvas> 
         <Lobby v-else-if="state === 3"></Lobby>
     </div>
