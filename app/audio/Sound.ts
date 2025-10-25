@@ -371,6 +371,23 @@ export default class Sound{
             result.max_volume = 0.8
         }
 
+        else if(name === 'forge'){
+            let v = ['repair.wav', 'repair2.wav']
+            
+            result.src = v[Math.floor(Math.random() * v.length)]
+         
+            result.max_volume = 0.3
+        }
+
+        
+        else if(name === 'manifistation launch'){
+            let v = ['flash.wav', 'mshield.wav']
+            
+            result.src = v[Math.floor(Math.random() * v.length)]
+         
+            result.max_volume = 0.8
+        }
+
         else if(name === 'challenge failed'){
             let v = ['confuse.wav', 'amplifydamage.wav']
             

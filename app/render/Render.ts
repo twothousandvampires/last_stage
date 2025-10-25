@@ -110,6 +110,15 @@ import Ultimate3 from "./src/sprites/Effect/Ultimate3"
 import UltimatumArena from "./src/sprites/Effect/UltimatumArena"
 import FlamyRing from "./src/sprites/Effect/FlamyRing"
 import SpiritCircle from "./src/sprites/Effect/SpiritCircle"
+import Icicle from "./src/sprites/Proj/Icicle"
+import GoldStatue from "./src/sprites/Enemy/GoldStatue"
+import Ultimate4 from "./src/sprites/Effect/Ultimate4"
+import AscentManifistation from "./src/sprites/Effect/AscentManifistation"
+import MasterManifistation from "./src/sprites/Effect/MasterManifistation"
+import FleshManifistation from "./src/sprites/Effect/FleshManifistation"
+import ForgeManifistation from "./src/sprites/Effect/ForgeManifistation"
+import ActivatedManifistation from "./src/sprites/Effect/ActivatedManifistation"
+import GoldNova from "./src/sprites/Effect/GoldNova"
 
 export default class Render{
     
@@ -388,6 +397,9 @@ export default class Render{
         else if(elem.name === 'statue'){
             return new Statue(elem.id)
         }
+        else if(elem.name === 'gold statue'){
+            return new GoldStatue(elem.id)
+        }
         else if(elem.name === 'skull cloud'){
             return new SkullCloud(elem.id)
         }
@@ -496,6 +508,9 @@ export default class Render{
         else if(elem.name === 'ultimatum3'){
             return new Ultimate3(elem.id)
         }
+        else if(elem.name === 'ultimatum4'){
+            return new Ultimate4(elem.id)
+        }
         else if(elem.name === 'ultimatum arena'){
             return new UltimatumArena(elem.id)
         }
@@ -504,6 +519,27 @@ export default class Render{
         }
         else if(elem.name === 'spirit circle'){
             return new SpiritCircle(elem.id)
+        }
+        else if(elem.name === 'icicle'){
+            return new Icicle(elem.id)
+        }
+        else if(elem.name === 'ascent manifistation'){
+            return new AscentManifistation(elem.id)
+        }
+        else if(elem.name === 'master manifistation'){
+            return new MasterManifistation(elem.id)
+        }
+        else if(elem.name === 'flesh manifistation'){
+            return new FleshManifistation(elem.id)
+        }
+        else if(elem.name === 'forge manifistation'){
+            return new ForgeManifistation(elem.id)
+        }
+        else if(elem.name === 'activated manifistation'){
+            return new ActivatedManifistation(elem.id)
+        }
+        else if(elem.name === 'gold nova'){
+            return new GoldNova(elem.id)
         }
     }
 

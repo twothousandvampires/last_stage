@@ -115,6 +115,10 @@ export default class ImageData{
             path:  'proj/sharped_bone.png',
         },
         {
+            name: 'icicle',
+            path:  'proj/icicle.png',
+        },
+        {
             name: 'medium_frost_sphere',
             path:  'proj/medium_frost_sphere.png',
         },
@@ -145,7 +149,11 @@ export default class ImageData{
         {
             name: 'pack7',
             path:  'effect/pack7.png',
-        },  
+        },
+        {
+            name: 'pack8',
+            path:  'effect/pack8.png',
+        },    
         {
             name: 'ghost_cultist',
             path:  'effect/ghost_cultist.png',
@@ -277,6 +285,10 @@ export default class ImageData{
         {
             name: 'statue1',
             path: 'spirit_statue/spirit_statue1.png',
+        },
+        {
+            name: 'gold_statue1',
+            path: 'gold_statue/gold_statue1.png',
         },
     ]
 
