@@ -8,6 +8,7 @@
             </div>
             <div id="player_stats" >
                 <p> {{ client.energy }} / {{ client.max_energy }}</p>
+                <p> {{ client.courage }} / {{ client.enl_trashold }}</p>
                 <p> {{ getLife(client) }}</p>
             </div>
             <div id="meta_info" >
@@ -66,13 +67,15 @@
 
     let updateClientData = (data) => {
         if(!data) return
-      
+        console.log(data)
         client.life = data.life_status
         client.max_energy = data.max_resource
         client.energy = data.resource
         client.abilities = data.abilities
         client.can_use = data.can_use
         client.warded = data.ward
+        client.courage = data.courage
+        client.enl_trashold = data.max_courage
     }
 
     let getLife = (client) => {

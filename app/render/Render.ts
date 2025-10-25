@@ -109,6 +109,7 @@ import Ultimate2 from "./src/sprites/Effect/Ultimate2"
 import Ultimate3 from "./src/sprites/Effect/Ultimate3"
 import UltimatumArena from "./src/sprites/Effect/UltimatumArena"
 import FlamyRing from "./src/sprites/Effect/FlamyRing"
+import SpiritCircle from "./src/sprites/Effect/SpiritCircle"
 
 export default class Render{
     
@@ -500,6 +501,9 @@ export default class Render{
         }
         else if(elem.name === 'flamy ring'){
             return new FlamyRing(elem.id)
+        }
+        else if(elem.name === 'spirit circle'){
+            return new SpiritCircle(elem.id)
         }
     }
 

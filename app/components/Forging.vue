@@ -40,13 +40,13 @@
                     <div style="display: flex; flex-direction: column;">
                         <p  :style="forge.can ? '' : 'background-color: red'" v-for="(forge, index) in item.forge"
                             class="button"
-                            @mouseover="$title($event, forge.description)"
+                            @mouseover="$title($event, forge.description + '\n(upgrade cost: ' +  forge.cost + ')')"
                             @mouseleave="$closeTitle()"
                             @click="$socket.emit('forge_item', {
                                 item_name: item.name,
                                 forge: index
                             })">
-                            {{ forge.name }}
+                            {{ forge.name }} ({{ forge.value }})
                         </p>
                     </div>         
                 </p>
@@ -55,6 +55,7 @@
         </div>
     </div>
     <div v-if="items.length" id="suggest">
+        <p>choose one</p>
         <div v-for="(item, index) in items">
             <img
             class="button"
@@ -65,10 +66,12 @@
         </div>
     </div>
     <div v-if="forgings.length" id="suggest">
+        <p>choose one</p>
         <div v-for="(forging, index) in forgings">
+            
             <p
             class="button"
-            @mouseover="$title($event, forging.description)"
+            @mouseover="$title($event, forging.description + '(upgrade cost: ' +  forging.cost + ')')"
             @mouseleave="$closeTitle()"
             @click="$socket.emit('pick_forging', id, index); forgings.length = 0">
             {{  forging.name }}

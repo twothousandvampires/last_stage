@@ -16,18 +16,17 @@
                 })"
                 @mouseleave="$closeTitle()"
                 >ascent - <span style="color: #8a0e0e;">{{ data.ascend }}</span></p>
-                <p v-if="data.free > 0">free upgrades- {{ data.free }}</p>
-                <!-- <p v-if="data.can_hold"  
-                    @click="$socket.emit('hold_grace')"
-                    style="font-size: 20px;cursor: pointer;" 
-                    class="button"
-                    @mouseover="$title($event, {
-                        text: 'you can not learn upgrades in this session but get 20% extra grace'
-                    })"
-                    @mouseleave="$closeTitle()" 
-                >HOLD
-                </p> -->
-                <p v-if="data.ascend > 0 && data.grace > 0"
+                <p style="font-size: 20px;"
+                @mouseover="$title($event, {
+                        text: 'You can learn for free, do not increase ascent level.'
+                })"
+                @mouseleave="$closeTitle()"
+                 v-if="data.free > 0"
+                 >free upgrades- <span style="color: #8a0e0e;">{{ data.free }}</span>
+                </p>
+            </div>
+            <div style="display: flex; flex-direction: row;">
+                <p v-if="data.ascend > 0 && data.can_hold"
                     @click="$socket.emit('hold_ascend')"
                     style="font-size: 20px;cursor: pointer;"
                     class="button" 
@@ -35,7 +34,8 @@
                         text: 'Pay 1 ascent point to reroll upgrades.'
                     })"
                     @mouseleave="$closeTitle()" 
-                >REROLL</p>
+                    >reroll
+                </p>
                 <p v-if="data.life >= 1 && data.can_hold"
                     @click="$socket.emit('sacrifice')"
                     style="font-size: 20px;cursor: pointer;"
@@ -44,7 +44,8 @@
                         text: 'Lose all life and get equals amount of grace, you can not learn upgrades in this time.'
                     })"
                     @mouseleave="$closeTitle()" 
-                >sacrifice</p>
+                    >sacrifice
+                </p>
             </div>
             <div style="display: flex; flex-direction: row; justify-content: space-around;">
                 <div v-for="upgrade in data.upgrades" style="display: flex; flex-direction: column;align-items: center; min-width: 160px;">
@@ -66,7 +67,7 @@
                            Cost: {{ upgrade.cost }}
                         </p>
                 </div>
-            </div>
+           </div>
         </div>
     </div>
 </template>

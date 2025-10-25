@@ -1,6 +1,9 @@
 <template>
     <div id="lobby">
         <div class="item_pull">
+            <div style="flex-grow: 1;min-width: 100%;text-align: center; cursor: pointer;">
+                <h2 @mouseleave="$closeTitle()" @mouseover="$title($event, 'common item pool for all players, you can take 2')">items pool</h2>
+            </div>
             <div v-for="item in item_pull">
                 <img class="button"
                     @mouseleave="$closeTitle()"
@@ -14,7 +17,11 @@
             </div>
         </div>
         <div v-if="lobby_data.length" class="abilities_pull">
+            <div style="flex-grow: 1;min-width: 100%;text-align: center; cursor: pointer;">
+                    <h2>possible abilities</h2>
+                </div>
             <div style="display: flex; align-items: center;">
+                
                 <div v-for="ability in lobby_data[0].template.abilities.filter(elem => elem.type === 1 && !elem.selected)">
                     <img 
                      class="button"

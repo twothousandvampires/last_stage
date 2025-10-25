@@ -41,6 +41,8 @@ export default class PlayerSprite extends UnitSprite {
         this.invisible = data.invisible
         this.abilities = data.abilities
         this.can_use = data.can_use
+        this.courage = data.courage
+        this.max_courage = data.max_courage
     }
     
     setState(state: string){
