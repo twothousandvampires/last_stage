@@ -68,6 +68,35 @@
                         </p>
                 </div>
            </div>
+           <div style="display: flex; flex-direction: column; justify-content: space-around;">
+                <div style="text-align: center;">
+                     <h2
+                        style = 'cursor:pointer'
+                        @mouseover="$title($event, 'click to mastery to apply they to ability, it will be triggered when you use that ability, chance depends on ability cost')"
+                        @mouseleave="$closeTitle()"
+                        >masteries
+                    </h2>
+                </div>
+                <div style="display: flex; flex-direction: row; justify-content: space-around;">
+                    <div 
+                        class="button" 
+                        @click="suggestAbilities(mastery.name)"
+                        @mouseover="$title($event, {
+                            main_title: mastery.name,
+                            text: mastery.description
+                        })"
+                        @mouseleave="$closeTitle()"
+                        v-for="mastery in data.masteries">
+                        <img width="60px" height="60px" :src="`/icons/small ward.png`" alt="">
+                    </div>
+                </div>
+                <div style="padding: 20px;" @click="show_abilities = false; mastery_name = ''" v-if="show_abilities" id="show-abilities">
+                    <h2>choose ability</h2>
+                    <div class="button" @click="addMastery(ability)" v-for="ability in abilities">
+                        <p>{{ ability }}</p>
+                    </div>
+                </div>
+           </div>
         </div>
     </div>
 </template>
@@ -78,10 +107,37 @@ import Stats from './Stats.vue';
 
     let $socket = $getInstance()
 
+    let show_abilities = ref(false)
+    let mastery_name = ref('')
+
     const props = defineProps({
-    data: {
-        type: Object,
-        required: true,
-    },
+        data: {
+            type: Object,
+            required: true,
+        },
+        abilities: {
+            type: Array,
+            required: true
+        }
     });
+
+    let suggestAbilities = (name) => {
+        if(show_abilities.value){
+            show_abilities.value = false
+            mastery_name = ''
+        }
+        else{
+            show_abilities.value = true
+            mastery_name = name
+        }
+        
+    }
+
+    let addMastery = (ability) => {
+        console.log(mastery_name)
+        if(!mastery_name) return
+
+        $socket.emit('add_mastery', {ability: ability, mastery: mastery_name})
+    } 
+
 </script>

@@ -33,30 +33,27 @@
         <h3>Damage system</h3>
         <p>
             There is no so-called damage amount in the game. There is simply DAMAGE, let's imagine it as just a one damage. Any ability deals one damage.
-            There are 2 ways to decrease or increase it. The one who deals damage is affected by the critical strike characteristic, which gives a chance to deal double damage.
-            The one who receives damage may have the negative "FRAGILE" status, which doubles the damage received.
             <h4>
-                If pierce rating is higher than armour rating you have a chance to deal additional damage.
+                If pierce rating is higher than armour rating you have a chance to deal additional damage based on difference.
             </h4>
             <h4>
-                The player also has a penetration rating that is applied and stacks on the enemy with each hit.
-                The more penetrated the enemy is, the higher the chance they will receive additional damage.
+                Critical strike gives a chance to deal double damage.
             </h4>
             <h4>
-                And the last stat that helps deal damage is Impact. It has a default cooldown of 3 seconds. When triggered, it deals damage to adjacent targets. Does not deal damage to hit target.
+                The player also has a crushing rating, which gives a chance to apply a crush stack to an enemy, which will increase damage the next time they take damage.
             </h4>
-            <p>
-                So for now maximum damage is 12. 1(default) + 1(from pierce) + 1(from penetrate) * 2 (double damage) * 2 (fragile stutus on target)
-            </p>
+            <h4>
+                And the last stat that helps deal damage is "Impact". It has a default cooldown of 2 seconds. When triggered, it deals damage to adjacent targets. Does not deal damage to hit target.
+            </h4>
         </p>
         </br>
 
         <h3>Defending mechanics:</h3>
         <h4>Life</h4>
         <p>
-            The player starts with 3 lives, and regenerates them over time. 
+            The player starts with 4 lives, and regenerates them over time. 
             By default, you can't regenerate more than 3, but there are ways to bypass it (for example, "LUST FOR LIFE"<span><img width="60px" height="60px" src="/icons/lust for life.png" title="you can learn it by grace"></span>.). 
-            If you have more than 3 lives, your status will be - "BLESSED".
+            If you have more than 4 lives, your status will be - "BLESSED".
         </p>
             <h4>Ward</h4>
         <p>
@@ -74,12 +71,16 @@
 
         <h4>Armour rate</h4>
         <p>
-            The units have an armor rating, which is calculated if there was no block, the armor rating gives a chance not to receive damage, the "PIERCE" <span><img width="60px" height="60px" src="/icons/pressure.png" title="you can learn it by grace"> characteristic helps to bypass the armor. 
-            Enemies can also have armor and this "PIERCE"</span>.
-        </p>
-        <h4>
             If armour rating is higher than pierce rating you have a chance to block damage.
+        </p>
+
+        <h4>
+            Fortification
         </h4>
+         <p>
+            Gives a chance to reduce total damage by 1.
+        </p>
+
         </br>
 
         <h3>Other:</h3>
@@ -105,6 +106,7 @@
                 <li>Sorcerer's skull - gives 1 ward and one free cast<span><img width="120px" height="120px" src="/preview/skull.gif"></span></li>
                 <li>Rift - spends 1 grace and casts a powerful spell <span><img class="bg" width="120px" height="120px" src="/preview/split.gif"></span></li>
                 <li>Item - gives a random item <span><img width="120px" height="120px" src="/preview/item_drop.gif"></span></li>
+                <li>Helm - increases random stat and gives 1 free upgrade</li>
             </ul>
         </p>
         <h4>If you kill a enemy by youself you will get gold.</h4>
@@ -125,6 +127,11 @@
                 <li>etc.</li>
             </ul>
         </p>
+        <h3>Game activities</h3>
+         
+        <p>Manifistations</p>
+        <p>Challenges</p>
+
         <h2>HAFE FUN!</h2>
   </div>
 </template>

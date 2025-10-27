@@ -34,7 +34,7 @@
             </div>
         </div>
     </div>
-    <Upgrades v-if="show_upgrades" :data="upgrade_data"></Upgrades>
+    <Upgrades v-if="show_upgrades" :data="upgrade_data" :abilities="client.abilities"></Upgrades>
     <Forging v-if="show_forging" :data="forging_data"></Forging>
     <Record v-if="show_record" :data="record_data"></Record>
 </template>
@@ -67,7 +67,7 @@
 
     let updateClientData = (data) => {
         if(!data) return
-        console.log(data)
+     
         client.life = data.life_status
         client.max_energy = data.max_resource
         client.energy = data.resource

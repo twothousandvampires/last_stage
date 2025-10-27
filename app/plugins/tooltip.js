@@ -29,7 +29,7 @@ export default defineNuxtPlugin(() => {
             }
         }
         else{
-             text.innerText = title_text
+            text.innerText = title_text
         }
 
         if(e){

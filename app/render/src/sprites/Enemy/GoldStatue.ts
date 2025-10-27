@@ -50,6 +50,7 @@ export default class GoldStatue extends UnitSprite{
             this.y_frame_offset = 0
             this.max_frame = 0
             this.max_frame_tick = 1000
+            this.removable = true
         }
     }
 }
