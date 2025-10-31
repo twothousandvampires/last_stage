@@ -68,28 +68,24 @@ export default class Sound{
         }
         else if(name === 'impy'){
             result.src = 'impy.wav'
-        }
-        
+        } 
         else if(name === 'shatter'){
             let v = ['shatter1.wav', 'coldimpact1.wav', 'coldimpact2.wav', 'coldimpact3.wav']
 
             result.src = v[Math.floor(Math.random() * v.length)]
         }
-
         else if(name === 'gold spending'){
             let v = ['gold.wav', 'gold1.wav']
 
             result.src = v[Math.floor(Math.random() * v.length)]
             result.max_volume = 0.4
         }
-
         else if(name === 'upgrade'){
             let v = ['readbook.wav']
 
             result.src = v[Math.floor(Math.random() * v.length)]
             result.max_volume = 0.4
         }
-
         else if(name === 'ambient'){
             let v = ['drip1.wav', 'drip2.wav', 'drip3.wav', 'drip4.wav', 'drip5.wav', 'drip6.wav', 'drip7.wav','drip8.wav', 'vtheft.wav', 'breath1.wav',
                 'breath2.wav','breath3.wav', 'breath4.wav' , 'breath5.wav', 'breath6.wav', 'breath7.wav', 'breath8.wav', 'breath9.wav', 'scream1.wav', 'scream2.wav', 'bat1.wav', 'bat2.wav'
@@ -97,8 +93,7 @@ export default class Sound{
             
             result.max_volume = 0.7
             result.src = v[Math.floor(Math.random() * v.length)]
-        }
-        
+        }       
         else if(name === 'frost nova'){
              let v = ['cold1.wav', 'cold2.wav', 'cold3.wav', 'cold4.wav']
 
@@ -146,8 +141,6 @@ export default class Sound{
             result.src = v[Math.floor(Math.random() * v.length)]
             result.max_volume = 0.2
         }
-     
-       
         else if(name === 'cold cast'){
             let v = ['coldcast.wav', 'icebolt2.wav']
          
@@ -173,7 +166,7 @@ export default class Sound{
             result.max_volume = 0.1
         }
         else if(name === 'cast'){
-            let v = ['summon.wav', 'firecasta.wav', 'cloak.wav', 'cast8.wav']
+            let v = ['summon.wav', 'firecasta.wav', 'cloak.wav', 'cast8.wav', 'cast7.wav', 'hammer.wav']
          
             result.src = v[Math.floor(Math.random() * v.length)]
             result.max_volume = 0.1
@@ -185,7 +178,25 @@ export default class Sound{
             result.max_volume = 0.1
         }
         else if(name === 'dark cast'){
-            let v = ['cursecast.wav', 'revivecast.wav', 'cast3.wav', 'Cast10.wav', 'dark_cast.wav']
+            let v = ['cursecast.wav', 'revivecast.wav', 'cast3.wav', 'Cast10.wav', 'dark_cast.wav', 'cast5.wav', 'poisoncast.wav']
+         
+            result.src = v[Math.floor(Math.random() * v.length)]
+            result.max_volume = 0.2
+        }
+        else if(name === 'impact'){
+            let v = ['circle1.wav', 'circle2.wav', 'circle3.wav', 'circle4.wav']
+         
+            result.src = v[Math.floor(Math.random() * v.length)]
+            result.max_volume = 0.4
+        }
+        else if(name === 'metal cast'){
+            let v = ['bladeshield.wav']
+         
+            result.src = v[Math.floor(Math.random() * v.length)]
+            result.max_volume = 0.4
+        }
+        else if(name === 'spirit voice'){
+            let v = ['dserp.wav']
          
             result.src = v[Math.floor(Math.random() * v.length)]
             result.max_volume = 0.1
@@ -196,11 +207,29 @@ export default class Sound{
             result.src = v[Math.floor(Math.random() * v.length)]
             result.max_volume = 0.1
         }
+        else if(name === 'breaking'){
+            let v = ['Swrdfkd.wav']
+         
+            result.src = v[Math.floor(Math.random() * v.length)]
+            result.max_volume = 0.6
+        }
         else if(name === 'enlight'){
             let v = ['magic.wav', 'Magic1.wav']
          
             result.src = v[Math.floor(Math.random() * v.length)]
             result.max_volume = 0.6
+        }
+        else if(name === 'from flesh'){
+            let v = ['grimward3.wav', 'grimward4.wav', 'grimward5.wav']
+            result.src = v[Math.floor(Math.random() * v.length)]
+
+            result.max_volume = 0.4
+        }
+        else if(name === 'orders'){
+            let v = ['order1.wav', 'order2.wav', 'order3.wav']
+            result.src = v[Math.floor(Math.random() * v.length)]
+
+            result.max_volume = 0.4
         }
         else if(name === 'corpse explode'){
             let v = ['corpse explode 1.wav', 'corpse explode 2.wav', 'corpse explode 3.wav', 'corpse explode 4.wav', 'corpse explode 5.wav', 'corpse explode 6.wav']
@@ -213,19 +242,16 @@ export default class Sound{
 
             result.max_volume = 1
         }
-
         else if(name === 'menu button 2'){
             result.src = 'pointdrop.wav'
 
             result.max_volume = 1
         }
-
         else if(name === 'menu item take'){
             result.src = 'belt.wav'
 
             result.max_volume = 0.3
         }
-
         else if(name === 'walk'){
             let v = ['walk1.wav', 'walk2.wav', 'walk3.wav', 'walk4.wav']
          
@@ -233,13 +259,11 @@ export default class Sound{
 
             result.max_volume = 0.6
         }
-
         else if(name === 'menu item drop'){
             result.src = 'glovesmetal.wav'
 
             result.max_volume = 0.3
         }
-
         else if(name === 'select_skill'){
             let v = ['metalshield.wav']
          
@@ -247,15 +271,13 @@ export default class Sound{
 
             result.max_volume = 0.2
         }
-
         else if(name === 'donate'){
-            let v = ['handofgod.wav']
+            let v = ['handofgod.wav', 'cast9.wav']
          
             result.src = v[Math.floor(Math.random() * v.length)]
 
             result.max_volume = 0.7
-        }
-        
+        }       
         else if(name === 'zap'){
             let v = ['zap1.wav', 'zap2.wav', 'zap3.wav', 'zap4.wav']
          
@@ -263,7 +285,6 @@ export default class Sound{
 
             result.max_volume = 0.2
         }
-
         else if(name === 'static'){
             let v = ['static1.wav', 'static2.wav', 'static3.wav', 'static4.wav']
          
@@ -271,7 +292,13 @@ export default class Sound{
 
             result.max_volume = 0.3
         }
+        else if(name === 'bone cast'){
+            let v = ['bonesp.wav', 'bonearmor2.wav', 'bonewalldestroyed.wav']
+         
+            result.src = v[Math.floor(Math.random() * v.length)]
 
+            result.max_volume = 0.4
+        }
         else if(name === 'hit bones'){
             let v = ['gethit1.wav', 'gethit2.wav', 'gethit3.wav', 'gethit4.wav', 'gethit5.wav', 'gethit6.wav', 'gethit7.wav', 'bsimpct.wav']
          
@@ -284,8 +311,7 @@ export default class Sound{
             result.src = 'dooropen.wav'
 
             result.max_volume = 0.7
-        }
-    
+        }    
         else if(name === 'bones explode'){
             let v = ['death1.wav', 'death2.wav', 'death3.wav', 'death4.wav', 'death5.wav', 'golumded.wav', 'shatter.wav']
          
@@ -293,7 +319,6 @@ export default class Sound{
 
             result.max_volume = 0.3
         }
-
         else if(name === 'heal'){
             let v = ['healing.wav']
          
@@ -301,16 +326,13 @@ export default class Sound{
 
             result.max_volume = 0.12
         }
-
-
         else if(name === 'potion'){
             let v = ['invpot.wav']
          
             result.src = v[Math.floor(Math.random() * v.length)]
 
             result.max_volume = 0.4
-        }
-       
+        }    
         else if(name === 'short sword swing'){
             let v = ['defiles1.wav', 'defiles2.wav', 'swing.wav', 'swing2.wav']
          
@@ -318,13 +340,11 @@ export default class Sound{
 
             result.max_volume = 0.2
         }
-
         else if(name === 'not deserving'){
             result.src = 'not_deserving.wav'
 
             result.max_volume = 0.6
         }
-
         else if(name === 'specter attack'){
             let v = ['s_attack1.wav', 's_attack2.wav', 's_attack3.wav', 's_attack4.wav']
          
@@ -332,7 +352,6 @@ export default class Sound{
 
             result.max_volume = 0.6
         }
-
         else if(name === 'blow'){
             let v = ['blow1.wav', 'blow2.wav', 'blow3.wav', 'blow4.wav']
          
@@ -340,7 +359,6 @@ export default class Sound{
 
             result.max_volume = 0.2
         }
-
         else if(name === 'get hit'){
             let v = ['soft1.wav', 'soft3.wav', 'soft5.wav' , 'lghit.wav', 'lghit1.wav', 'bhit.wav', 'bhit1.wav', 'sword1.wav' ,'sword2.wav', 'sword3.wav', 'sword4.wav', 'sword5.wav', 'sword6.wav']
          
@@ -348,7 +366,6 @@ export default class Sound{
 
             result.max_volume = 0.2
         }
-
         else if(name === 'evel upgrade'){
             let v = ['poison.wav']
          
@@ -356,7 +373,6 @@ export default class Sound{
 
             result.max_volume = 1
         }
-
         else if(name === 'blood'){
             let v = ['blodstar.wav']
          
@@ -364,22 +380,18 @@ export default class Sound{
 
             result.max_volume = 0.6
         }
-
         else if(name === 'challenge start'){
             result.src = 'concentration.wav'
          
             result.max_volume = 0.8
         }
-
         else if(name === 'forge'){
             let v = ['repair.wav', 'repair2.wav']
             
             result.src = v[Math.floor(Math.random() * v.length)]
          
             result.max_volume = 0.3
-        }
-
-        
+        }      
         else if(name === 'manifistation launch'){
             let v = ['flash.wav', 'mshield.wav']
             
@@ -387,7 +399,6 @@ export default class Sound{
          
             result.max_volume = 0.8
         }
-
         else if(name === 'challenge failed'){
             let v = ['confuse.wav', 'amplifydamage.wav']
             
@@ -395,7 +406,6 @@ export default class Sound{
          
             result.max_volume = 0.8
         }
-
         else if(name === 'challenge done'){
             result.src = 'handofgod.wav'
          

@@ -42,6 +42,7 @@
     import Render from '~/render/Render';
     import { useNuxtApp } from '#app';
     import { reactive } from 'vue';
+import { el } from '@nuxt/ui/runtime/locale/index.js';
 
     const { $getInstance, $audio, $title, $closeTitle } = useNuxtApp();
     let $socket = $getInstance()
@@ -104,8 +105,7 @@
 
     onMounted(() => {
         $closeTitle()
-        // $audio.lobby_back.pause()
-        // $audio.back.play()
+        
         let render = new Render($socket)
 
         let updateMessages = (messages, client) => {
@@ -114,7 +114,7 @@
                     $title(null, msg.text)
                     setTimeout(() => {
                         $closeTitle()
-                    }, 2000)
+                    }, 4000)
                 }
             })
         }
@@ -129,14 +129,22 @@
         })
 
         $socket.on('new_status', (data) => {
-            statuses.value = statuses.value.filter(elem => elem.name != data.name)
-            statuses.value.push(data)
+            let exist = statuses.value.find(elem => elem.name === data.name)
+            if(exist){
+                if(exist.timeout){
+                    clearTimeout(exist.timeout)
+                }
+               
+                statuses.value = statuses.value.filter(elem => elem != exist)
+            }
+            
             if(data.duration){
-                setTimeout(() => {
+                data.timeout = setTimeout(() => {
                     $closeTitle()
                     statuses.value = statuses.value.filter(elem => elem.name != data.name)
                 }, data.duration)
             }
+            statuses.value.push(data)
         })
 
         $socket.on('game_is_over', () => {

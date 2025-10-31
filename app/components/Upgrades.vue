@@ -72,7 +72,7 @@
                 <div style="text-align: center;">
                      <h2
                         style = 'cursor:pointer'
-                        @mouseover="$title($event, 'click to mastery to apply they to ability, it will be triggered when you use that ability, chance depends on ability cost')"
+                        @mouseover="$title($event, 'click to mastery to apply they to ability, it will be triggered when you use that ability, chance depends on ability cost. You get mastery every 15 ascent, after boss killing and after activating 5/5 mastery manifistation')"
                         @mouseleave="$closeTitle()"
                         >masteries
                     </h2>

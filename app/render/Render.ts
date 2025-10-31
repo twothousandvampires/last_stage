@@ -119,6 +119,12 @@ import FleshManifistation from "./src/sprites/Effect/FleshManifistation"
 import ForgeManifistation from "./src/sprites/Effect/ForgeManifistation"
 import ActivatedManifistation from "./src/sprites/Effect/ActivatedManifistation"
 import GoldNova from "./src/sprites/Effect/GoldNova"
+import MasteryManifistation from "./src/sprites/Effect/MasteryManifistation"
+import Tornado from "./src/sprites/Effect/Tornado"
+import SingleTornado from "./src/sprites/Effect/SingleTornado"
+import FlyingSwords from "./src/sprites/Effect/FlyingSwords"
+import EarthShaking from "./src/sprites/Effect/EarthShaking"
+import FlyingSword from "./src/sprites/Effect/FlyingSword"
 
 export default class Render{
     
@@ -526,7 +532,7 @@ export default class Render{
         else if(elem.name === 'ascent manifistation'){
             return new AscentManifistation(elem.id)
         }
-        else if(elem.name === 'master manifistation'){
+        else if(elem.name === 'grace manifistation'){
             return new MasterManifistation(elem.id)
         }
         else if(elem.name === 'flesh manifistation'){
@@ -540,6 +546,24 @@ export default class Render{
         }
         else if(elem.name === 'gold nova'){
             return new GoldNova(elem.id)
+        }
+        else if(elem.name === 'mastery manifistation'){
+            return new MasteryManifistation(elem.id)
+        }
+        else if(elem.name === 'single tornado'){
+            return new SingleTornado(elem.id)
+        }
+        else if(elem.name === 'tornado'){
+            return new Tornado(elem.id)
+        }
+        else if(elem.name === 'flying swords'){
+            return new FlyingSwords(elem.id)
+        }
+        else if(elem.name === 'earth shaking'){
+            return new EarthShaking(elem.id)
+        }
+        else if(elem.name === 'flying sword'){
+            return new FlyingSword(elem.id)
         }
     }
 
