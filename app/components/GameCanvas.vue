@@ -96,7 +96,7 @@ import { el } from '@nuxt/ui/runtime/locale/index.js';
             return 'injured'
         }
         else if(client.life === 1){
-            return "at death's door"
+            return "near dead"
         }
         else{
             return "dead"
