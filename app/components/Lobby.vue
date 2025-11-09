@@ -1,7 +1,7 @@
 <template>
     <div id="lobby">
-        <div class="item_pull">
-            <div style="flex-grow: 1;min-width: 100%;text-align: center; cursor: pointer;">
+        <div v-if="show_item_pull" class="item_pull">
+            <div @click="show_item_pull = false" style="flex-grow: 1;min-width: 100%;text-align: center; cursor: pointer;">
                 <h2 @mouseleave="$closeTitle()" @mouseover="$title($event, 'common item pool for all players, you can take 2')">items pool</h2>
             </div>
             <div v-for="item in item_pull">
@@ -16,45 +16,12 @@
                 </img>
             </div>
         </div>
-        <div v-if="lobby_data.length" class="abilities_pull">
+        <div v-if="lobby_data.length && show_abilities_pull" class="abilities_pull">
             <div style="flex-grow: 1;min-width: 100%;text-align: center; cursor: pointer;">
                     <h2>possible abilities</h2>
                 </div>
-            <div style="display: flex; align-items: center;">
-                
-                <div v-for="ability in lobby_data[0].template.abilities.filter(elem => elem.type === 1 && !elem.selected)">
-                    <img 
-                     class="button"
-                     @mouseleave="$closeTitle()" @mouseover="$title($event, {'main_title': ability.name, 'text': ability.desc})"
-                     @click="selectSkill(ability.name)" width="60px" height="60px" :src="`/icons/${ability.name}.png`" alt="">
-                </div>
-            </div>
-            <div style="display: flex; align-items: center;">
-                <div v-for="ability in lobby_data[0].template.abilities.filter(elem => elem.type === 2 && !elem.selected)">
-                    <img 
-                     class="button"
-                     @mouseleave="$closeTitle()" @mouseover="$title($event, {'main_title': ability.name, 'text': ability.desc})"
-                     @click="selectSkill(ability.name)" width="60px" height="60px" :src="`/icons/${ability.name}.png`" alt="">
-                </div>
-            </div>
-            <div style="display: flex; align-items: center;">
-                <div v-for="ability in lobby_data[0].template.abilities.filter(elem => elem.type === 3 && !elem.selected)">
-                    <img 
-                     class="button"
-                     @mouseleave="$closeTitle()" @mouseover="$title($event, {'main_title': ability.name, 'text': ability.desc})"
-                     @click="selectSkill(ability.name)" width="60px" height="60px" :src="`/icons/${ability.name}.png`" alt="">
-                </div>
-            </div>
-            <div style="display: flex; align-items: center;">
-                <div v-for="ability in lobby_data[0].template.abilities.filter(elem => elem.type === 4 && !elem.selected)">
-                    <img 
-                     class="button"
-                     @mouseleave="$closeTitle()" @mouseover="$title($event, {'main_title': ability.name, 'text': ability.desc})"
-                     @click="selectSkill(ability.name)" width="60px" height="60px" :src="`/icons/${ability.name}.png`" alt="">
-                </div>
-            </div>
-            <div style="display: flex; align-items: center;">
-                <div v-for="ability in lobby_data[0].template.abilities.filter(elem => elem.type === 5 && !elem.selected)">
+            <div style="display: flex; align-items: center;">            
+                <div v-for="ability in abilities_to_pick">
                     <img 
                      class="button"
                      @mouseleave="$closeTitle()" @mouseover="$title($event, {'main_title': ability.name, 'text': ability.desc})"
@@ -79,7 +46,7 @@
                             <div v-for="item in value.template.item">
                                 <img
                                 class="button"
-                                @click="unpickItem(item.name)"
+                                @click="unpickItem(value, item.name)"
                                 width="60px"
                                 height="60px"
                                 :src="`/icons/${item.name}.png`"
@@ -87,19 +54,33 @@
                                 @mouseover="$title($event, {'main_title': item.name, 'text':item.description})"
                                 alt="">
                             </div>
+                            <div v-for="num in 2 - value.template.item.length">
+                                <img
+                                class="button"
+                                
+                                width="60px"
+                                height="60px"
+                                :src="`/icons/service.png`"
+                                @mouseleave="$closeTitle()"
+                                @click="openItemPull(value)"
+                                @mouseover="$title($event, 'click to select item')"
+                                alt="">
+                            </div>
                         </div>
-                        <p style="width: 100%;" class="button" @click="ready()">{{ value.ready ? 'cancel' : 'ready' }}</p>
+                        <p style="width: 100%;" class="button" @click="ready(value)">{{ value.ready ? 'cancel' : 'ready' }}</p>
                     </div>
                 </div>
                 <div class="right_bottom" v-if="lobby_data.length">
-                    <div class="selected_skill_div" v-for="selected in lobby_data[0].template.abilities.filter(elem => elem.selected)">
+                    <div class="selected_skill_div" v-for="selected in value.template.abilities.filter(elem => elem.selected)">
                         <p>{{ getSkillType(selected.type) }}</p>
                         <img 
+                        class="button"
                         width="60px"
                         height="60px" 
                         @mouseleave="$closeTitle()"
                         @mouseover="$title($event, {'main_title': selected.name, 'text': selected.desc})"
-                        :src="`/icons/${selected.name}.png`" 
+                        :src="`/icons/${selected.name}.png`"
+                        @click="opemAbbilitiesPull(value, selected.type)"
                         alt="">
                     </div>
                 </div>
@@ -110,16 +91,23 @@
                         <p @mouseover="$title($event,'load stats, items and abilities')" @mouseleave="$closeTitle()" class="button" @click="loadBuild(value.template.name)">load</p>
                         <p @mouseover="$title($event,'save stats, items and abilities')" @mouseleave="$closeTitle()" class="button" @click="saveBuild(value.template.name, value.template)">save</p>
                     </div>
+                    <div v-else style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; width: 60%;">
+                        <p class="button">last</p>
+                        <p class="button">stage</p>
+                    </div>
                     <p>remain stat points : {{ value.template.stat_count }}</p>
                     <div class="stat" v-for="(stat_value, key) in value.template.stats">
                         <p class="button" v-if="value.is_player" @click="decreaseStat(key)">-</p>
+                        <p v-else>///</p>
                         <p
                         @mouseover="$title($event, value.template.stats_description[key])"
                         @mouseleave="$closeTitle()"
                         class="button">
                             {{ key }} : {{ stat_value }}
                         </p>
+                       
                         <p class="button" v-if="value.is_player" @click="increaseStat(key)">+</p>
+                         <p v-else>///</p>
                     </div>
                 </div>
             </div>
@@ -129,10 +117,17 @@
 <script setup>
     import { ref } from 'vue';
     import { useNuxtApp } from '#app';
+import { el } from '@nuxt/ui/runtime/locale/index.js';
+import { alert } from '#build/ui';
    
     const { $getInstance, $audio, $title, $closeTitle } = useNuxtApp();
 
+    let show_item_pull = ref(false)
+    let show_abilities_pull = ref(false)
+
     let lobby_data = ref([])
+    let abilities_to_pick = ref([])
+
     let $socket = $getInstance()
     
     let increaseStat = (stat) => {
@@ -143,7 +138,11 @@
         $socket.emit('decrease_stat', stat)
     }
 
-    let ready = () =>{
+    let ready = (player) =>{
+        if(!player.is_player) return
+
+        show_item_pull.value = false
+        show_abilities_pull.value = false
         $socket.emit('player_ready')
     }
 
@@ -153,7 +152,9 @@
         $socket.emit('pick_item', item_name)
     }
 
-    let unpickItem = (item_name) => {
+    let unpickItem = (player, item_name) => {
+        if(!player.is_player) return
+        
         $audio.setSound('menu item drop')
         $closeTitle()
         $socket.emit('unpick_item', item_name)
@@ -163,6 +164,8 @@
         $audio.setSound('select_skill')
         $closeTitle()
         $socket.emit('select_skill', skill_name)
+        show_abilities_pull.value = false
+        abilities_to_pick.value = []
     }
 
     let getSkillType = (type) => {
@@ -186,7 +189,24 @@
         localStorage.setItem(name, JSON.stringify(item))
     }
 
+    let openItemPull = (player) => {
+        if(!player.is_player) return
+
+        show_item_pull.value = true
+        show_abilities_pull.value = false
+    }
+
+    let opemAbbilitiesPull = (player, type) => {
+        if(!player.is_player) return
+
+        show_item_pull.value = false
+        show_abilities_pull.value = true  
+        abilities_to_pick.value = player.template.abilities.filter(elem => elem.type === type && !elem.selected)
+    }
+
     let item_pull = ref([])
+
+    let getP
    
     onMounted(() => {
         $closeTitle()
