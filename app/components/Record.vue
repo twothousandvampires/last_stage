@@ -22,7 +22,7 @@
     let sendRecord = () => {
         if(record_name === '') return
 
-        submited = true
+        submited.value = true
         $socket.emit('add_record', record_name)
     }
 

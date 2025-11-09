@@ -42,9 +42,9 @@
     import Render from '~/render/Render';
     import { useNuxtApp } from '#app';
     import { reactive } from 'vue';
-import { el } from '@nuxt/ui/runtime/locale/index.js';
 
     const { $getInstance, $audio, $title, $closeTitle } = useNuxtApp();
+
     let $socket = $getInstance()
 
     let client = reactive({
@@ -148,7 +148,7 @@ import { el } from '@nuxt/ui/runtime/locale/index.js';
         })
 
         $socket.on('game_is_over', () => {
-            show_record = false
+            show_record.value = false
             $socket.disconnect()
         })
 
@@ -157,7 +157,7 @@ import { el } from '@nuxt/ui/runtime/locale/index.js';
         })
         
         $socket.on('suggers_record', (data) => {
-            show_record = true
+            show_record.value = true
             record_data = data
 
             console.log(show_record, data)
