@@ -159,8 +159,6 @@
         $socket.on('suggers_record', (data) => {
             show_record.value = true
             record_data = data
-
-            console.log(show_record, data)
         })
 
         $socket.on('show_upgrades', (data) => {

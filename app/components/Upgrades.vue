@@ -134,7 +134,6 @@ import Stats from './Stats.vue';
     }
 
     let addMastery = (ability) => {
-        console.log(mastery_name)
         if(!mastery_name) return
 
         $socket.emit('add_mastery', {ability: ability, mastery: mastery_name})
