@@ -7,8 +7,8 @@
             @mouseover="$title($event, 'Click on item for unlocking forgings. Cost depends on existing count.')"
             @mouseleave="$closeTitle()"
             >gold: {{ data.gold }}</p>
-            <p v-if="data.gold >= 20"
-                @mouseover="$title($event, 'Pay 20 gold and get one grace.')"
+            <p v-if="data.gold >= 60"
+                @mouseover="$title($event, 'Pay 60 gold and get one grace.')"
                 @mouseleave="$closeTitle()"
                 @click="$socket.emit('donate')"
                 style="font-size: 20px;cursor: pointer;"
