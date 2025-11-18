@@ -67,7 +67,10 @@ export default class Sound{
             result.max_volume = 0.2
         }
         else if(name === 'impy'){
-            result.src = 'impy.wav'
+            let v = ['impy.wav', 'falla2.wav']
+
+            result.src = v[Math.floor(Math.random() * v.length)]
+            result.max_volume = 0.3
         } 
         else if(name === 'shatter'){
             let v = ['shatter1.wav', 'coldimpact1.wav', 'coldimpact2.wav', 'coldimpact3.wav']
@@ -122,6 +125,18 @@ export default class Sound{
          
             result.src = v[Math.floor(Math.random() * v.length)]
             result.max_volume = 0.4
+        }
+        else if(name === 'flying bones cast'){
+            let v = ['bats1.wav', 'bats2.wav']
+         
+            result.src = v[Math.floor(Math.random() * v.length)]
+            result.max_volume = 0.2
+        }
+        else if(name === 'specter dead'){
+            let v = ['blackd1.wav', 'blackd2.wav']
+         
+            result.src = v[Math.floor(Math.random() * v.length)]
+            result.max_volume = 0.2
         }
         else if(name === 'fire cast'){
             let v = ['firecast.wav', 'firelaunch1.wav', 'firelaunch2.wav', 'die1.wav' , 'die4.wav']
@@ -184,7 +199,7 @@ export default class Sound{
             result.max_volume = 0.2
         }
         else if(name === 'impact'){
-            let v = ['circle1.wav', 'circle2.wav', 'circle3.wav', 'circle4.wav']
+            let v = ['circle1.wav', 'circle2.wav', 'circle3.wav', 'circle4.wav', 'fatcs1.wav', 'fatcs2.wav']
          
             result.src = v[Math.floor(Math.random() * v.length)]
             result.max_volume = 0.4
@@ -202,7 +217,7 @@ export default class Sound{
             result.max_volume = 0.1
         }
         else if(name === 'sword swing'){
-            let v = ['bigswish1.wav', 'bigswish2.wav', 'bigswish3.wav', 'bigswish5.wav', 'bigswish4.wav', 'swing.wav', 'swing2.wav']
+            let v = ['bigswish1.wav', 'bigswish2.wav', 'bigswish3.wav', 'bigswish5.wav', 'bigswish4.wav', 'swing.wav', 'swing2.wav', 'fatca1.wav', 'fatca2.wav']
          
             result.src = v[Math.floor(Math.random() * v.length)]
             result.max_volume = 0.1
@@ -334,12 +349,26 @@ export default class Sound{
             result.max_volume = 0.4
         }    
         else if(name === 'short sword swing'){
-            let v = ['defiles1.wav', 'defiles2.wav', 'swing.wav', 'swing2.wav']
+            let v = ['defiles1.wav', 'defiles2.wav', 'swing.wav', 'swing2.wav', 'fatca1.wav', 'fatca2.wav','ftwina1.wav','ftwina2.wav']
          
             result.src = v[Math.floor(Math.random() * v.length)]
 
             result.max_volume = 0.2
         }
+        else if(name === 'solid dead'){
+            let v = ['fatch1.wav', 'fatch2.wav']
+         
+            result.src = v[Math.floor(Math.random() * v.length)]
+
+            result.max_volume = 0.4
+        }     
+        else if(name === 'flamy dead'){
+            let v = ['defileh1.wav', 'defileh2.wav']
+         
+            result.src = v[Math.floor(Math.random() * v.length)]
+
+            result.max_volume = 0.1
+        } 
         else if(name === 'not deserving'){
             result.src = 'not_deserving.wav'
 
