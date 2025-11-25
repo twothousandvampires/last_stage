@@ -125,6 +125,9 @@ import SingleTornado from "./src/sprites/Effect/SingleTornado"
 import FlyingSwords from "./src/sprites/Effect/FlyingSwords"
 import EarthShaking from "./src/sprites/Effect/EarthShaking"
 import FlyingSword from "./src/sprites/Effect/FlyingSword"
+import Bonfires from "./src/sprites/Effect/Bonfire"
+import Bonfire from "./src/sprites/Effect/Bonfire"
+import Torch from "./src/sprites/Effect/Torch"
 
 export default class Render{
     
@@ -564,6 +567,12 @@ export default class Render{
         }
         else if(elem.name === 'flying sword'){
             return new FlyingSword(elem.id)
+        }
+        else if(elem.name === 'bonfire'){
+            return new Bonfire(elem.id)
+        }
+        else if(elem.name === 'torch'){
+            return new Torch(elem.id)
         }
     }
 
