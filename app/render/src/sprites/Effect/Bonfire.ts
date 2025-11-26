@@ -4,12 +4,12 @@ export default class Bonfire extends Sprite {
     constructor(id) {
         super(id);
 
-        this.max_frame = 1;
-        this.max_frame_tick = 10000;
-        this.sprite_h = 25;
-        this.sprite_w = 25;
-        this.sprite_name = 'pack3';
-        this.y_frame_offset = Math.random() > 0.5 ? 80 : 105;
-        this.frame = Math.floor(Math.random() * 5)
+        this.max_frame = 9;
+        this.max_frame_tick = 6;
+        this.sprite_h = 50;
+        this.sprite_w = 50;
+        this.sprite_name = 'pack9'
+        this.y_frame_offset = 0
+        this.light_z = 16
     }
 }

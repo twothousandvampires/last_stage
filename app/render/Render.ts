@@ -128,6 +128,8 @@ import FlyingSword from "./src/sprites/Effect/FlyingSword"
 import Bonfires from "./src/sprites/Effect/Bonfire"
 import Bonfire from "./src/sprites/Effect/Bonfire"
 import Torch from "./src/sprites/Effect/Torch"
+import NarureEnvirenmentNoLight from "./src/sprites/Effect/NarureEnvirenmentNoLight"
+import NarureEnvirenmentWithLight from "./src/sprites/Effect/NarureEnvirenmentWithLight"
 
 export default class Render{
     
@@ -573,6 +575,12 @@ export default class Render{
         }
         else if(elem.name === 'torch'){
             return new Torch(elem.id)
+        }
+        else if(elem.name === 'nature with light'){
+            return new NarureEnvirenmentWithLight(elem.id)
+        }
+        else if(elem.name === 'nature no light'){
+            return new NarureEnvirenmentNoLight(elem.id)
         }
     }
 

@@ -153,7 +153,11 @@ export default class ImageData{
         {
             name: 'pack8',
             path:  'effect/pack8.png',
-        },    
+        },
+        {
+            name: 'pack9',
+            path:  'effect/pack9.png',
+        },     
         {
             name: 'ghost_cultist',
             path:  'effect/ghost_cultist.png',
