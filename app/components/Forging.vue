@@ -1,6 +1,6 @@
 <template>
     <div id="forge">
-        <Stats :stats="data.stats"></Stats>
+        <Stats :stats="data.stats" :triggers="data.triggers"></Stats>
         <div>
             <div style="display: flex;flex-direction: row; justify-content: center;align-items: center;gap: 10px">
             <p style="font-size: 30px; color: gold;"

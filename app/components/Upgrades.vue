@@ -1,6 +1,6 @@
 <template>
     <div id="upgrades">
-        <Stats :stats="data.stats"></Stats>
+        <Stats :stats="data.stats" :triggers="data.triggers"></Stats>
         <div>
             <div style="display: flex;flex-direction: row; justify-content: space-around;align-items: center;">
                 <p style="font-size: 20px;"
@@ -26,7 +26,7 @@
                 </p>
             </div>
             <div style="display: flex; flex-direction: row;">
-                <p v-if="data.ascend > 0 && data.can_hold"
+                <p v-if="data.ascend > 0"
                     @click="$socket.emit('hold_ascend')"
                     style="font-size: 20px;cursor: pointer;"
                     class="button" 

@@ -10,6 +10,6 @@ export default class Bonfire extends Sprite {
         this.sprite_w = 50;
         this.sprite_name = 'pack9'
         this.y_frame_offset = 0
-        this.light_z = 16
+        this.light_z = 6
     }
 }

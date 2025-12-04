@@ -130,6 +130,10 @@ import Bonfire from "./src/sprites/Effect/Bonfire"
 import Torch from "./src/sprites/Effect/Torch"
 import NarureEnvirenmentNoLight from "./src/sprites/Effect/NarureEnvirenmentNoLight"
 import NarureEnvirenmentWithLight from "./src/sprites/Effect/NarureEnvirenmentWithLight"
+import EnemyRemains from "./src/sprites/Effect/EnemyRemains"
+import EnemyRemains2 from "./src/sprites/Effect/EnemyRemains2"
+import ExplodingSkull from "./src/sprites/Enemy/ExplodingSkull"
+import Ancient from "./src/sprites/Enemy/Ancient"
 
 export default class Render{
     
@@ -582,6 +586,18 @@ export default class Render{
         else if(elem.name === 'nature no light'){
             return new NarureEnvirenmentNoLight(elem.id)
         }
+        else if(elem.name === 'enemy remains'){
+            return new EnemyRemains(elem.id)
+        }
+        else if(elem.name === 'enemy remains2'){
+            return new EnemyRemains2(elem.id)
+        }
+        else if(elem.name === 'exploding skull'){
+            return new ExplodingSkull(elem.id)
+        }
+        else if(elem.name === 'ancient'){
+            return new Ancient(elem.id)
+        }
     }
 
     public updateData(data: any){
@@ -593,21 +609,23 @@ export default class Render{
         })
 
         data.actors.forEach(elem => {
-            let sprite = this.actors.get(elem.id)
+            if(!data.deleted.includes(elem.id)){
+                let sprite = this.actors.get(elem.id)
 
-            if(!sprite && !data.deleted.includes(elem.id)){
-                sprite = this.getSprite(elem)
-            
-                if(sprite){
-                    sprite.x = elem.x
-                    sprite.y = elem.y
-                    sprite.update(elem)
-                    this.actors.set(elem.id, sprite)
+                if(!sprite){
+                    sprite = this.getSprite(elem)
+                
+                    if(sprite){
+                        sprite.x = elem.x
+                        sprite.y = elem.y
+                        sprite.update(elem)
+                        this.actors.set(elem.id, sprite)
+                    }
                 }
-            }
-            else if(!data.deleted.includes(elem.id)){
-                sprite.update(elem)
-            }
+                else{
+                    sprite.update(elem)
+                }
+            }  
         })
     }
 
@@ -748,7 +766,7 @@ export default class Render{
             }
 
             if((elem.id === this.client_id) || (elem.light_r && elem.can_share_light)){
-                let r = elem.light_r
+                let r = Math.floor(elem.light_r)
                 for (let i = -r; i <= r; i += 1) {
                     for (let j = -r; j <= r; j += 1) {
                         let y = i + Math.floor(rel_y - elem.z - elem.light_z) 

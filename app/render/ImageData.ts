@@ -207,6 +207,14 @@ export default class ImageData{
             path:  'skull/skull1.png',
         },
         {
+            name: 'demonskull',
+            path:  'demonskull/demonskull1.png',
+        },
+        {
+            name: 'ancient',
+            path:  'ancient/ancient1.png',
+        },
+        {
             name: 'grace',
             path:  'effect/grace.png',
         },

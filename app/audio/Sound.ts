@@ -89,6 +89,12 @@ export default class Sound{
             result.src = v[Math.floor(Math.random() * v.length)]
             result.max_volume = 0.4
         }
+        else if(name === 'devil sound'){
+            let v = ['vtheft.wav']
+
+            result.src = v[Math.floor(Math.random() * v.length)]
+            result.max_volume = 0.8
+        }
         else if(name === 'ambient'){
             let v = ['drip1.wav', 'drip2.wav', 'drip3.wav', 'drip4.wav', 'drip5.wav', 'drip6.wav', 'drip7.wav','drip8.wav', 'vtheft.wav', 'breath1.wav',
                 'breath2.wav','breath3.wav', 'breath4.wav' , 'breath5.wav', 'breath6.wav', 'breath7.wav', 'breath8.wav', 'breath9.wav', 'scream1.wav', 'scream2.wav', 'bat1.wav', 'bat2.wav'
