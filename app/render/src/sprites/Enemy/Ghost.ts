@@ -52,7 +52,7 @@ export default class Ghost extends UnitSprite{
         }
         else if(this.state === 'ressurect'){
             this.max_frame = 9
-            this.max_frame_tick = 4
+            this.max_frame_tick = Math.round( (2000/ this.max_frame) / 30)
             this.repeatable = false
             this.y_frame_offset = 400
         }

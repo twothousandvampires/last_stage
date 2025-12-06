@@ -94,13 +94,13 @@ export default class Bones extends UnitSprite {
             let r = Math.random()
             if(r < 0.5){               
                 this.max_frame = 6
-                this.max_frame_tick = 4
+                this.max_frame_tick = Math.round( (2000 / this.max_frame) / 30)
                 this.repeatable = false
             }
             else{              
                 this.y_frame_offset = 80
                 this.max_frame = 8
-                this.max_frame_tick = 4
+                this.max_frame_tick = Math.round( (2000/ this.max_frame) / 30)
                 this.repeatable = false
             }
         }
