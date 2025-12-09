@@ -134,6 +134,7 @@ import EnemyRemains from "./src/sprites/Effect/EnemyRemains"
 import EnemyRemains2 from "./src/sprites/Effect/EnemyRemains2"
 import ExplodingSkull from "./src/sprites/Enemy/ExplodingSkull"
 import Ancient from "./src/sprites/Enemy/Ancient"
+import Impact from "./src/sprites/Effect/Impact"
 
 export default class Render{
     
@@ -597,6 +598,9 @@ export default class Render{
         }
         else if(elem.name === 'ancient'){
             return new Ancient(elem.id)
+        }
+        else if(elem.name === 'impact'){
+            return new Impact(elem.id)
         }
     }
 
