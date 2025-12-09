@@ -148,7 +148,7 @@
         })
 
         $socket.on('game_is_over', () => {
-            show_record.value = false
+            // show_record.value = false
             $socket.disconnect()
         })
 
