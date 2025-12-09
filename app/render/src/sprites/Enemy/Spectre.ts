@@ -75,12 +75,12 @@ export default class Spectre extends UnitSprite{
             if(r < 0.5){    
                 this.y_frame_offset = 0           
                 this.max_frame = 11
-                this.max_frame_tick = 4
+                this.max_frame_tick = Math.round( (2000/ this.max_frame) / 30)
             }
             else{              
                 this.y_frame_offset = 80
                 this.max_frame = 16
-                this.max_frame_tick = 4
+                this.max_frame_tick = Math.round( (2000/ this.max_frame) / 30)
             }
         }
         else if(this.state === 'attack'){

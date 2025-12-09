@@ -13,6 +13,11 @@
             <li>energy</li>
             <li>courage</li>
         </ul>
+
+        <div>
+            <img src="/preview/image.jpg" alt="">
+        </div>
+
         <h3>Each class gets them differently:</h3>
         <ul>
             <li>Swordsman gains energy when dealing damage with abilities, courage when killing</li>
@@ -241,12 +246,12 @@
             When killing enemies, you will get something:
             <ul>
                 <li>Grace - gives you 1 grace <span><img width="120px" height="120px" src="/preview/grace.png"></span></li>
-                <li>Essence - increases health and briefly increases vision radius <span><img  width="120px" height="120px" src="/preview/entity.png"></span></li>
+                <li>Essence - resrores health and briefly increases vision radius <span><img  width="120px" height="120px" src="/preview/entity.png"></span></li>
                 <li>Energy sphere - gives 2 energy and phasing<span><img width="120px" height="120px" src="/preview/charged_sphere.png"></span></li>
                 <li>Sorcerer's skull - gives 1 ward and one free cast<span><img width="120px" height="120px" src="/preview/skull.gif"></span></li>
                 <li>Rift - spends 1 grace and casts a powerful spell <span><img class="bg" width="120px" height="120px" src="/preview/split.gif"></span></li>
                 <li>Item - gives a random item <span><img width="120px" height="120px" src="/preview/item_drop.gif"></span></li>
-                <li>Helm - increases random stat and gives 1 free upgrade</li>
+                <li>Helm - increases random stat and increases ascent level <span><img class="bg" width="120px" height="120px" src="/preview/helm.png"></span></li>
             </ul>
         </p>
 
@@ -254,8 +259,7 @@
 
         <br>
 
-        <h3>Portal</h3>
-        <p>Periodically a portal will appear where you can spend gold and grace to improve the character.<span><img class="bg" width="120px" height="120px" src="/preview/grace_portal.png"></span></p>
+        <p>Periodically a portal will appear where you can spend gold and grace to improve the character. Will last for 1 minute.<span><img class="bg" width="120px" height="120px" src="/preview/grace_portal.png"></span></p>
 
         <br>
 
@@ -273,8 +277,37 @@
         
         <h3>Game activities</h3>
          
-        <p>Manifistations</p>
-        <p>Challenges</p>
+        <h4>Manifistations</h4>
+        <div>
+            <p>
+                After a certain amount of time, activate it. Once activated, you'll gain complications, and after a short time, it will reappear. The activation time and penalty will increase. If this has been activated at least once, or there have been five activations, you'll receive a reward whose strength depends on the number of activations.
+            </p>
+            <div>
+                <img title="forging your items, summons enemies when activated" width="200px" height="200px" style="margin-right: 12px;" src="/preview/forge_manifistation.png" alt="">
+                <img title="increases your stats, applyes negative status to you when activated"  width="200px" height="200px"  src="/preview/flesh_manifistation.png" alt="">
+            </div>
+        </div>
+        <h4>Challenges</h4>
+        <div>
+            <p>
+                If all players have activated the challenge, a zone will be created for you to complete. Completing the challenge will earn you a reward; exiting the zone or failing to complete the challenge will incur a penalty.
+            </p>
+            <div>
+                <img title="create a portal and gives one free upgrade, when failed drains 3 grace" width="200px" height="200px" style="margin-right: 12px;" src="/preview/ultimate1.png" alt="">
+                <img title="increases enemy create rate and chance for dropping grace from them, when failed reduces enemy create rate"  width="200px" height="200px"  src="/preview/ultimate2.png" alt="">
+            </div>
+        </div>
+        
+        <h4>Ancient</h4>
+
+        <div>
+            <p>
+                There are 20 seconds during which you can hit him, after disappearing there is a chance, based on the number of hits you have on him, to get a powerful trigger.
+            </p>
+            <div>
+                 <img width="200px" height="200px"  src="/preview/ancient.png" alt=""></img>
+            </div>
+        </div>
 
         <h2>HAFE FUN!</h2>
   </div>

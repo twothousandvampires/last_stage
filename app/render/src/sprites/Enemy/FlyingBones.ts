@@ -83,7 +83,7 @@ export default class FlyingBones extends UnitSprite{
             this.sprite_name = 'fbones5'
             let r = Math.random()
             this.max_frame = 6
-            this.max_frame_tick = 8
+            this.max_frame_tick = Math.round( (2000/ this.max_frame) / 30)
             this.repeatable = false
             this.y_frame_offset = 0
            
