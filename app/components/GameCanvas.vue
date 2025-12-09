@@ -121,10 +121,8 @@
 
         $socket.on('tick_data', (server_data, server_time) => {
             let client = render.actors.get($socket.id)
-            
-            render.updateData(server_data)
             $audio.updateData(server_data, client)
-            
+            render.updateData(server_data)
             updateMessages(server_data.messedges, client)
             meta = server_data.meta
             updateClientData(client)
@@ -150,7 +148,7 @@
         })
 
         $socket.on('game_is_over', () => {
-            // show_record.value = false
+            show_record.value = false
             $socket.disconnect()
         })
 
