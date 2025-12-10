@@ -9,7 +9,7 @@
             </div>
         </div>
         <div v-if="show == 'stats'" style="display: flex;flex-direction: column; min-width: 160px;">
-            <div style="display: flex; flex-direction: row; align-items: center;justify-content: space-between;" v-for="(stat, key) in stats.stats">
+            <div class="stat-row" v-for="(stat, key) in stats.stats">
                 <p 
                 style="font-size: 14px; cursor: pointer;"
                 @mouseover="showStat($event, stats.descriptions[key])"

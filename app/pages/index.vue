@@ -1,15 +1,15 @@
 <template>
     <div id="wrap">
         <Info v-if="state === 1"></Info>
-        <div v-if="state === 1" style="color: #7a6b5c; position: absolute; top:40%; left: 50%; transform: translate(-50%, -50%);display: flex;flex-direction: column; align-items: center;">
+        <div v-if="state === 1" style="color: #7a6b5c;display: flex;flex-direction: column; align-items: center;">
             <div>
-                <img width="400px" height="auto" src="/preview/logo.png" alt="">
+                <img id="main-logo" src="/preview/logo.png" alt="">
             </div>
-            <div style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
+            <div>
                 <img src="/preview/666.gif" alt="">
             </div>
             <div>
-                <div v-if="lobbies_data.length" style="display: flex;flex-direction: row; gap: 24px; justify-content: center;">
+                <div v-if="lobbies_data.length" class="lobbies">
                     <div :style="'background-color:' +  (data.started === 'true' || (data.players >= data.maxPlayers) ? '#3a0000' : '#8a2121') + ';padding: 20px 40px; color:#e0e07a;'" @click="connect(data)" class="button" v-for="data in lobbies_data">
                         <p>{{ data.name }}</p>
                         <p>{{ data.players }} / {{ data.maxPlayers }}</p>

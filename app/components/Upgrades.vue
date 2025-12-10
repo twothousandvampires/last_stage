@@ -1,8 +1,8 @@
 <template>
     <div id="upgrades">
         <Stats :stats="data.stats" :triggers="data.triggers"></Stats>
-        <div>
-            <div style="display: flex;flex-direction: row; justify-content: space-around;align-items: center;">
+        <div id ='upgrades-right'>
+            <div style="display: flex;flex-direction: row; justify-content: space-around;align-items: center; flex-wrap: wrap;">
                 <p style="font-size: 20px;"
                 @mouseover="$title($event, {
                         text: 'This is spent on learning abilities.'
@@ -25,7 +25,7 @@
                  >free upgrades- <span style="color: #8a0e0e;">{{ data.free }}</span>
                 </p>
             </div>
-            <div style="display: flex; flex-direction: row;">
+            <div style="display: flex; flex-direction: row;flex-wrap: wrap;">
                 <p v-if="data.ascend > 0"
                     @click="$socket.emit('hold_ascend')"
                     style="font-size: 20px;cursor: pointer;"
@@ -47,7 +47,7 @@
                     >sacrifice
                 </p>
             </div>
-            <div style="display: flex; flex-direction: row; justify-content: space-around;">
+            <div style="display: flex; flex-direction: row; justify-content: space-around;flex-wrap: wrap;">
                 <div v-for="upgrade in data.upgrades" style="display: flex; flex-direction: column;align-items: center; min-width: 160px;">
                     <img
                         class="button"
@@ -68,7 +68,7 @@
                         </p>
                 </div>
            </div>
-           <div style="display: flex; flex-direction: column; justify-content: space-around;">
+           <div style="display: flex; flex-direction: column; justify-content: space-around;flex-wrap: wrap;">
                 <div style="text-align: center;">
                      <h2
                         style = 'cursor:pointer'

@@ -117,9 +117,7 @@
 <script setup>
     import { ref } from 'vue';
     import { useNuxtApp } from '#app';
-import { el } from '@nuxt/ui/runtime/locale/index.js';
-import { alert } from '#build/ui';
-   
+
     const { $getInstance, $audio, $title, $closeTitle } = useNuxtApp();
 
     let show_item_pull = ref(false)
@@ -192,6 +190,7 @@ import { alert } from '#build/ui';
     let openItemPull = (player) => {
         if(!player.is_player) return
 
+        $closeTitle()
         show_item_pull.value = true
         show_abilities_pull.value = false
     }
@@ -199,6 +198,7 @@ import { alert } from '#build/ui';
     let opemAbbilitiesPull = (player, type) => {
         if(!player.is_player) return
 
+        $closeTitle()
         show_item_pull.value = false
         show_abilities_pull.value = true  
         abilities_to_pick.value = player.template.abilities.filter(elem => elem.type === type && !elem.selected)
@@ -206,8 +206,6 @@ import { alert } from '#build/ui';
 
     let item_pull = ref([])
 
-    let getP
-   
     onMounted(() => {
         $closeTitle()
 
@@ -219,7 +217,13 @@ import { alert } from '#build/ui';
             lobby_data.value = []
             
             data.forEach(element => {
-                if(element.id === $socket.id) element.is_player = true
+                if(element.id === $socket.id){
+                    element.is_player = true
+                    if(element.template.item.length >= 2){
+                        show_item_pull.value = false
+                    }
+                }
+                
                 lobby_data.value.push(element)
             });
 

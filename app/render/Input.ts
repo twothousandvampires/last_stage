@@ -105,8 +105,10 @@ export default class Input {
     }
 
     createTouchZone() {
-    
-        let special_div = document.createElement('div');
+        let total_wrap = document.createElement('div')
+        total_wrap.id = 'total_wrap'
+
+        let special_div = document.createElement('div')
         special_div.id = 'special'
 
         let defend_div = document.createElement('div');
@@ -134,11 +136,10 @@ export default class Input {
 
         let wrap = document.createElement('div')
         wrap.id = 'defend_and_special'
-         wrap.appendChild(special_div)
+        wrap.appendChild(special_div)
         wrap.appendChild(defend_div)
        
-
-        document.getElementsByTagName('body')[0].appendChild(wrap)
+        
 
         let touch_zone = document.createElement('div')
         touch_zone.id = 'touch-zone'
@@ -174,12 +175,8 @@ export default class Input {
              e.preventDefault();
         }, { touch_zone: false });
 
-        document.getElementsByTagName('body')[0].appendChild(touch_zone)
-        this.createSecondZone()
-
-    }
-
-    createSecondZone(){
+        total_wrap.appendChild(touch_zone)
+        total_wrap.appendChild(wrap)
         let second_touch_zone = document.createElement('div')
         second_touch_zone.id = 'second-touch-zone'
         this.second_touch_zone = second_touch_zone
@@ -225,8 +222,11 @@ export default class Input {
 
         }, { touch_zone: false })
 
-        document.getElementsByTagName('body')[0].appendChild(second_touch_zone)
+        total_wrap.appendChild(second_touch_zone)
+
+        document.getElementsByTagName('body')[0]?.appendChild(total_wrap)
     }
+
 
     public getInputs(){
         return this.pressed
