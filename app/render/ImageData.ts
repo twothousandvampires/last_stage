@@ -215,6 +215,10 @@ export default class ImageData{
             path:  'ancient/ancient1.png',
         },
         {
+            name: 'ancient2',
+            path:  'ancient2/ancient2.png',
+        },
+        {
             name: 'grace',
             path:  'effect/grace.png',
         },

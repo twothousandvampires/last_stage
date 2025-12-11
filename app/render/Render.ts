@@ -135,6 +135,8 @@ import EnemyRemains2 from "./src/sprites/Effect/EnemyRemains2"
 import ExplodingSkull from "./src/sprites/Enemy/ExplodingSkull"
 import Ancient from "./src/sprites/Enemy/Ancient"
 import Impact from "./src/sprites/Effect/Impact"
+import AncientSkull from "./src/sprites/Effect/AncientSkull"
+import ConstractedOne from "./src/sprites/Enemy/ConstractedOne"
 
 export default class Render{
     
@@ -601,6 +603,12 @@ export default class Render{
         }
         else if(elem.name === 'impact'){
             return new Impact(elem.id)
+        }
+        else if(elem.name === 'ancient skull'){
+            return new AncientSkull(elem.id)
+        }
+        else if(elem.name === 'constracted one'){
+            return new ConstractedOne(elem.id)
         }
     }
 
