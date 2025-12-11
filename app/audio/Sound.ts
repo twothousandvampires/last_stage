@@ -420,8 +420,13 @@ export default class Sound{
          
             result.max_volume = 0.8
         }
+        else if(name === 'spirit'){
+            result.src = 'frozenarmor.wav'
+         
+            result.max_volume = 0.1
+        }
         else if(name === 'forge'){
-            let v = ['repair.wav', 'repair2.wav']
+            let v = ['repair.wav', 'repair2.wav', 'malus.wav']
             
             result.src = v[Math.floor(Math.random() * v.length)]
          

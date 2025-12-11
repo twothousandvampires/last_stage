@@ -137,6 +137,7 @@ import Ancient from "./src/sprites/Enemy/Ancient"
 import Impact from "./src/sprites/Effect/Impact"
 import AncientSkull from "./src/sprites/Effect/AncientSkull"
 import ConstractedOne from "./src/sprites/Enemy/ConstractedOne"
+import Spirit from "./src/sprites/Effect/Spirit"
 
 export default class Render{
     
@@ -609,6 +610,9 @@ export default class Render{
         }
         else if(elem.name === 'constracted one'){
             return new ConstractedOne(elem.id)
+        }
+        else if(elem.name === 'spirit'){
+            return new Spirit(elem.id)
         }
     }
 

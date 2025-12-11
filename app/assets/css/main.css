@@ -476,9 +476,13 @@
     }
     @media (max-width: 425px) {
         #forge{
-            width: 400px;
-            left: calc(50% - 200px);
+            width: 100vw;
             font-size: 10px;
+            transform: none;
+            top:0;
+            left: 0;
+            overflow-y: auto;
+            max-height: 100vh;
         }
         #forge img{
             width: 40px;
@@ -504,6 +508,9 @@
         transform: translate(-50%, -50%);
         background-color: #b8b85c;
         border: 6px solid #7a7a3a;
+        overflow-y: auto;
+        min-height: 620px;
+        max-height: 100vh;
     }
      @media (max-width: 425px) {
         #upgrades {
