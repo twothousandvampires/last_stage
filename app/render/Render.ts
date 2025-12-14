@@ -138,6 +138,7 @@ import Impact from "./src/sprites/Effect/Impact"
 import AncientSkull from "./src/sprites/Effect/AncientSkull"
 import ConstractedOne from "./src/sprites/Enemy/ConstractedOne"
 import Spirit from "./src/sprites/Effect/Spirit"
+import FrostExplosionSmall from "./src/sprites/Effect/FrostExplosionSmall"
 
 export default class Render{
     
@@ -265,6 +266,9 @@ export default class Render{
         } 
         else if(elem.name === 'frost explosion big'){
             return new FrostExplosionBig(elem.id)
+        }
+        else if(elem.name === 'frost explosion small'){
+            return new FrostExplosionSmall(elem.id)
         }
         else if(elem.name === 'frost explosion medium'){
             return new FrostExplosionMedium(elem.id)
