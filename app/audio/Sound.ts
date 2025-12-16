@@ -228,6 +228,12 @@ export default class Sound{
             result.src = v[Math.floor(Math.random() * v.length)]
             result.max_volume = 0.1
         }
+        else if(name === 'call of power'){
+            let v = ['shockwave.wav']
+         
+            result.src = v[Math.floor(Math.random() * v.length)]
+            result.max_volume = 0.2
+        }
         else if(name === 'breaking'){
             let v = ['Swrdfkd.wav']
          

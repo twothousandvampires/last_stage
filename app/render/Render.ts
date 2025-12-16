@@ -139,6 +139,9 @@ import AncientSkull from "./src/sprites/Effect/AncientSkull"
 import ConstractedOne from "./src/sprites/Enemy/ConstractedOne"
 import Spirit from "./src/sprites/Effect/Spirit"
 import FrostExplosionSmall from "./src/sprites/Effect/FrostExplosionSmall"
+import CallOfPower from "./src/sprites/Effect/CallOfPower"
+import CircleOfCalm from "./src/sprites/Effect/CircleOfCalm"
+import Fragility from "./src/sprites/Effect/Fragility"
 
 export default class Render{
     
@@ -617,6 +620,15 @@ export default class Render{
         }
         else if(elem.name === 'spirit'){
             return new Spirit(elem.id)
+        }
+        else if(elem.name === 'call of power'){
+            return new CallOfPower(elem.id)
+        }
+        else if(elem.name === 'circle of calm'){
+            return new CircleOfCalm(elem.id)
+        }
+        else if(elem.name === 'fragility'){
+            return new Fragility(elem.id)
         }
     }
 
