@@ -249,7 +249,6 @@
                 <li>Essence - resrores health and briefly increases vision radius <span><img  width="120px" height="120px" src="/preview/entity.png"></span></li>
                 <li>Energy sphere - gives 2 energy and phasing<span><img width="120px" height="120px" src="/preview/charged_sphere.png"></span></li>
                 <li>Sorcerer's skull - gives 1 ward and one free cast<span><img width="120px" height="120px" src="/preview/skull.gif"></span></li>
-                <li>Rift - spends 1 grace and casts a powerful spell <span><img class="bg" width="120px" height="120px" src="/preview/split.gif"></span></li>
                 <li>Item - gives a random item <span><img width="120px" height="120px" src="/preview/item_drop.gif"></span></li>
                 <li>Helm - increases random stat and increases ascent level <span><img class="bg" width="120px" height="120px" src="/preview/helm.png"></span></li>
             </ul>
@@ -305,7 +304,20 @@
                 There are 20 seconds during which you can hit him, after disappearing there is a chance, based on the number of hits you have on him, to get a powerful trigger.
             </p>
             <div>
-                 <img width="200px" height="200px"  src="/preview/ancient.png" alt=""></img>
+                 <img width="200px"  style="margin-right: 12px;" height="200px"  src="/preview/ancient.png" alt=""></img>
+                 <img width="200px" height="200px"  src="/preview/ancient2.png" alt=""></img>
+            </div>
+        </div>
+
+        <h4>Sigils</h4>
+
+        <div>
+            <p>
+                Drains your energy to give you more help.
+            </p>
+            <div>
+                 <img  style="margin-right: 12px;" title="drains 6 energy and cast powerfull spell afterwards" width="200px" height="200px"  src="/preview/callofpower.png" alt=""></img>
+                 <img title="drains 6 courage and grants powerful status afterwards." width="200px" height="200px"  src="/preview/circleofcalm.png" alt=""></img>
             </div>
         </div>
 

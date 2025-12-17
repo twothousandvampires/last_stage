@@ -7,6 +7,11 @@
             @mouseover="$title($event, 'Click on item for unlocking forgings. Cost depends on existing count.')"
             @mouseleave="$closeTitle()"
             >gold: {{ data.gold }}</p>
+            <p style="font-size: 30px; color: gold;"
+            @mouseover="$title($event, 'What is this for?')"
+            @mouseleave="$closeTitle()">
+               carved sparks: {{ data.carved_sparks }}
+            </p>
             <p v-if="data.gold >= 60"
                 @mouseover="$title($event, 'Pay 60 gold and get one grace.')"
                 @mouseleave="$closeTitle()"
