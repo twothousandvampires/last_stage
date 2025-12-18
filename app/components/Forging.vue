@@ -3,15 +3,17 @@
         <Stats :stats="data.stats" :triggers="data.triggers"></Stats>
         <div>
             <div style="display: flex;flex-direction: row; justify-content: center;align-items: center;gap: 10px">
-            <p style="font-size: 30px; color: gold;"
-            @mouseover="$title($event, 'Click on item for unlocking forgings. Cost depends on existing count.')"
-            @mouseleave="$closeTitle()"
-            >gold: {{ data.gold }}</p>
-            <p style="font-size: 30px; color: gold;"
-            @mouseover="$title($event, 'What is this for?')"
-            @mouseleave="$closeTitle()">
-               carved sparks: {{ data.carved_sparks }}
-            </p>
+                <div style="display: flex;flex-direction: column;">
+                    <p style="font-size: 30px; color: gold;"
+                    @mouseover="$title($event, 'Click on item for unlocking forgings. Cost depends on existing count.')"
+                    @mouseleave="$closeTitle()"
+                    >gold: {{ data.gold }}</p>
+                    <p style="font-size: 30px; color: gold;"
+                    @mouseover="$title($event, 'What is this for?')"
+                    @mouseleave="$closeTitle()">
+                    carved sparks: {{ data.carved_sparks }}
+                    </p>
+                </div>
             <p v-if="data.gold >= 60"
                 @mouseover="$title($event, 'Pay 60 gold and get one grace.')"
                 @mouseleave="$closeTitle()"
