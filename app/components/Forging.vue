@@ -8,9 +8,11 @@
                     @mouseover="$title($event, 'Click on item for unlocking forgings. Cost depends on existing count.')"
                     @mouseleave="$closeTitle()"
                     >gold: {{ data.gold }}</p>
+
                     <p style="font-size: 30px; color: gold;"
                     @mouseover="$title($event, 'What is this for?')"
-                    @mouseleave="$closeTitle()">
+                    @mouseleave="$closeTitle()"
+                    @click="showSparks()">
                     carved sparks: {{ data.carved_sparks }}
                     </p>
                 </div>
@@ -85,6 +87,36 @@
             </p>
         </div>
     </div>
+    <div style="padding: 20px;" @click="show_sparks = false;" v-if="show_sparks" id="show-abilities">
+        <div>
+            <div>
+                sparks: {{ data.carved_sparks }}
+            </div>
+            <input v-model="sparks_amount" type="text">
+            <p @click.prevent="getGrandForging()">try</p>
+        </div>
+        <div @click.prevent="selectGrandForging(grand_forging.name)" class="button" v-for="grand_forging in data.grand_forgings">
+            <p>{{ grand_forging.name }}</p>
+        </div>
+        <div>
+            <p v-if="grand_forging_name != ''">-> Choose item <-</p>
+            <div class="button" v-for="item in data.items">
+                <img
+                    class="button"
+                    @mouseover="$title($event, {
+                        main_title: item.name,
+                        text: item.description
+                    })"
+                    @mouseleave="$closeTitle()" 
+                    @click.prevent="applyGrandForging(item.name)"
+                    width="60px"
+                    height="60px"
+                    :src="`/icons/${item.name}.png`" alt=""
+                >
+            </div>
+        </div>
+        
+    </div>
 </template>
 <script setup>
     const { $getInstance, $title, $closeTitle } = useNuxtApp();
@@ -100,10 +132,34 @@
     let items = ref([])
     let forgings =  ref([])
     let id = ref(0)
+    let show_sparks = ref(false)
+    let sparks_amount = ref(0)
+    let grand_forging_name = ref('')
+
+    let showSparks = () => {
+        show_sparks.value = !show_sparks.value
+    }
+
+    let getGrandForging = () => {
+        let amount = sparks_amount
+        console.log(amount.value)
+
+        $socket.emit('get_grand_forging', amount.value)
+    }
 
     let getUnlockCost = (item) => {
         if(item.forge.length >= item.max_forgings) return 'maximum forgings'
         return 'forging unlock cost: ' + ((item.forge.length * 15) + 15)
+    }
+
+    let applyGrandForging = (item_name) => {
+        console.log(grand_forging_name.value, item_name)
+        $socket.emit('apply_grand_forging', grand_forging_name.value, item_name)
+        grand_forging_name.value = ''
+    }   
+
+    let selectGrandForging = (name) => {
+        grand_forging_name.value = name
     }
 
     $socket.on('suggest_items', (data) => {
@@ -114,5 +170,5 @@
         id.value = item_id
         forgings.value = data
     })
-
+    
 </script>
