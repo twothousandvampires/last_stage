@@ -49,6 +49,7 @@
 
     let client = reactive({
         life: 0,
+        max_life: 0,
         energy: 0,
         max_energy: 0,
         abilities: []
@@ -77,16 +78,17 @@
         client.warded = data.ward
         client.courage = data.courage
         client.enl_trashold = data.max_courage
+        client.max_life = data.max_life
     }
 
     let getLife = (client) => {
         if(client.warded){
             return 'warded'
         }
-        else if(client.life > 4){
+        else if(client.life > client.max_life){
             return 'blessed'
         }
-        else if(client.life === 4){
+        else if(client.life <= client.max_life && client.life > 3){
             return 'good'
         }
         else if(client.life === 3){

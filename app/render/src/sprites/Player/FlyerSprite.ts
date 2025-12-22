@@ -13,6 +13,7 @@ export default class FlyerSprite extends UnitSprite{
     second: any
     ward: number = 0
     invisible: boolean = false
+    max_life: number = 0
  
     constructor(id: number){
       super(id)
@@ -42,6 +43,7 @@ export default class FlyerSprite extends UnitSprite{
         this.can_use = data.can_use
         this.courage = data.courage
         this.max_courage = data.max_courage
+        this.max_life = data.max_life
     }
     
     setState(state: string){

@@ -92,23 +92,23 @@
             <div>
                 sparks: {{ data.carved_sparks }}
             </div>
-            <input v-model="sparks_amount" type="text">
-            <p @click.prevent="getGrandForging()">try</p>
+            <input @click.stop="" v-model="sparks_amount" type="text">
+            <p @click.stop="getGrandForging()">try</p>
         </div>
-        <div @click.prevent="selectGrandForging(grand_forging.name)" class="button" v-for="grand_forging in data.grand_forgings">
+        <div @click.stop="selectGrandForging(grand_forging.name)" class="button" v-for="grand_forging in data.grand_forgings">
             <p>{{ grand_forging.name }}</p>
         </div>
         <div>
             <p v-if="grand_forging_name != ''">-> Choose item <-</p>
             <div class="button" v-for="item in data.items">
                 <img
-                    class="button"
+                    :class="{'button': grand_forging_name != ''}"
                     @mouseover="$title($event, {
                         main_title: item.name,
                         text: item.description
                     })"
                     @mouseleave="$closeTitle()" 
-                    @click.prevent="applyGrandForging(item.name)"
+                    @click.stop="applyGrandForging(item.name)"
                     width="60px"
                     height="60px"
                     :src="`/icons/${item.name}.png`" alt=""
@@ -142,8 +142,7 @@
 
     let getGrandForging = () => {
         let amount = sparks_amount
-        console.log(amount.value)
-
+     
         $socket.emit('get_grand_forging', amount.value)
     }
 
