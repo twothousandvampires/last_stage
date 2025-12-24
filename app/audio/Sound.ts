@@ -84,7 +84,7 @@ export default class Sound{
             result.max_volume = 0.4
         }
         else if(name === 'upgrade'){
-            let v = ['readbook.wav']
+            let v = ['readbook.wav', 'holylight.wav', 'defiance.wav']
 
             result.src = v[Math.floor(Math.random() * v.length)]
             result.max_volume = 0.4

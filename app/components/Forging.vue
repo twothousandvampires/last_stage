@@ -1,8 +1,8 @@
 <template>
     <div id="forge">
         <Stats :stats="data.stats" :triggers="data.triggers"></Stats>
-        <div>
-            <div style="display: flex;flex-direction: row; justify-content: center;align-items: center;gap: 10px">
+        <div style="display: flex;flex-direction: column; justify-content: center;align-items: center;gap: 10px">
+            <div style="display: flex;flex-direction: column; justify-content: center;align-items: center;gap: 10px">
                 <div style="display: flex;flex-direction: column;">
                     <p style="font-size: 30px; color: gold;"
                     @mouseover="$title($event, 'Click on item for unlocking forgings. Cost depends on existing count.')"
@@ -16,21 +16,47 @@
                     carved sparks: {{ data.carved_sparks }}
                     </p>
                 </div>
-            <p v-if="data.gold >= 60"
-                @mouseover="$title($event, 'Pay 60 gold and get one grace.')"
-                @mouseleave="$closeTitle()"
-                @click="$socket.emit('donate')"
-                style="font-size: 20px;cursor: pointer;"
-                class="button">DONATE
-            </p>
-            <p v-if="data.can_buy"
-            @mouseover="$title($event, 'Buy an item for 100 gold.')"
-            @mouseleave="$closeTitle()"
-            @click="$socket.emit('buy')" 
-            style="font-size: 20px;cursor: pointer;"
-            class="button"> BUY ITEM
-            </p>
+                <div>
+                     <p v-if="data.gold >= 60"
+                        @mouseover="$title($event, 'Pay 60 gold and get one grace.')"
+                        @mouseleave="$closeTitle()"
+                        @click="$socket.emit('donate')"
+                        style="font-size: 20px;cursor: pointer;"
+                        class="button">donate
+                    </p>
+                    <p v-if="data.can_buy"
+                    @mouseover="$title($event, 'Buy an item for 100 gold.')"
+                    @mouseleave="$closeTitle()"
+                    @click="$socket.emit('buy')" 
+                    style="font-size: 20px;cursor: pointer;"
+                    class="button"> buy item
+                    </p>
+                    <p 
+                    @mouseover="$title($event, 'Spend all of your carved sparks (max is 100), the more there are, the greater the chance of creating a synthesized property, which can then be applied to an item')"
+                    @mouseleave="$closeTitle()" 
+                    class="button"
+                    @click.stop="getGrandForging()"
+                     style="font-size: 20px;cursor: pointer;"
+                    >synthesize</p>
+                </div>
+           
         </div>
+       
+        <div style="max-width: 400px;">
+                <img    v-for="grand_forging in data.grand_forgings"
+                class='button'
+                @mouseover="$title($event, {
+                    main_title: grand_forging.name,
+                    text: grand_forging.description
+                })"
+                @mouseleave="$closeTitle()" 
+                @click.stop="selectGrandForging(grand_forging.name)"
+                width="60px"
+                height="60px"
+                :src="`/icons/synthesized property.png`" alt=""
+            >
+        </div>
+        
         <div style="grid-template-columns: 220px 220px; display: grid;">
             <div v-for="item in data.items" style="display: flex; flex-direction: column;align-items: center;">
                 <img
@@ -40,7 +66,7 @@
                         text: item.description
                     })"
                     @mouseleave="$closeTitle()" 
-                    @click="$socket.emit('unlock_forging', item.name); item.length = 0"
+                    @click="unlockForge(item)"
                     width="60px"
                     height="60px"
                     :src="`/icons/${item.name}.png`" alt="">
@@ -87,36 +113,6 @@
             </p>
         </div>
     </div>
-    <div style="padding: 20px;" @click="show_sparks = false;" v-if="show_sparks" id="show-abilities">
-        <div>
-            <div>
-                sparks: {{ data.carved_sparks }}
-            </div>
-            <input @click.stop="" v-model="sparks_amount" type="text">
-            <p @click.stop="getGrandForging()">try</p>
-        </div>
-        <div @click.stop="selectGrandForging(grand_forging.name)" class="button" v-for="grand_forging in data.grand_forgings">
-            <p>{{ grand_forging.name }}</p>
-        </div>
-        <div>
-            <p v-if="grand_forging_name != ''">-> Choose item <-</p>
-            <div class="button" v-for="item in data.items">
-                <img
-                    :class="{'button': grand_forging_name != ''}"
-                    @mouseover="$title($event, {
-                        main_title: item.name,
-                        text: item.description
-                    })"
-                    @mouseleave="$closeTitle()" 
-                    @click.stop="applyGrandForging(item.name)"
-                    width="60px"
-                    height="60px"
-                    :src="`/icons/${item.name}.png`" alt=""
-                >
-            </div>
-        </div>
-        
-    </div>
 </template>
 <script setup>
     const { $getInstance, $title, $closeTitle } = useNuxtApp();
@@ -132,18 +128,25 @@
     let items = ref([])
     let forgings =  ref([])
     let id = ref(0)
-    let show_sparks = ref(false)
-    let sparks_amount = ref(0)
+
     let grand_forging_name = ref('')
 
-    let showSparks = () => {
-        show_sparks.value = !show_sparks.value
+    let unlockForge = (item) => {
+        if(grand_forging_name.value != ''){
+            applyGrandForging(item.name)
+        }
+        else{
+            $socket.emit('unlock_forging', item.name)
+            item.length = 0
+        }       
     }
 
     let getGrandForging = () => {
-        let amount = sparks_amount
-     
-        $socket.emit('get_grand_forging', amount.value)
+        let a = props.data.carved_sparks
+        if(a > 100){
+            a = 100
+        }
+        $socket.emit('get_grand_forging', a)
     }
 
     let getUnlockCost = (item) => {
@@ -152,7 +155,6 @@
     }
 
     let applyGrandForging = (item_name) => {
-        console.log(grand_forging_name.value, item_name)
         $socket.emit('apply_grand_forging', grand_forging_name.value, item_name)
         grand_forging_name.value = ''
     }   
@@ -169,5 +171,17 @@
         id.value = item_id
         forgings.value = data
     })
+
+    watch(
+      () => props.data.carved_sparks, 
+      (newSparksValue) => {
+        if (newSparksValue) {
+          sparks_amount.value = newSparksValue 
+          if(sparks_amount.value > 50){
+            sparks_amount.value = 50
+          }
+        } 
+      }
+    )
     
 </script>

@@ -171,7 +171,6 @@
         $socket.on('show_forgings', (data) => {
             show_forging = true
             forging_data = data
-            console.log(forging_data)
         })
 
         $socket.on('close_forgings', () => {

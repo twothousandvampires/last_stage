@@ -415,6 +415,9 @@
         flex-direction: row;
         align-items: flex-start;
         justify-content: space-between;
+        min-height: 620px;
+        max-width: 100vh;
+        overflow-y: auto;
     }
     #forge p {
         color: aliceblue;
