@@ -17,8 +17,8 @@
                     </p>
                 </div>
                 <div>
-                     <p v-if="data.gold >= 60"
-                        @mouseover="$title($event, 'Pay 60 gold and get one grace.')"
+                     <p v-if="data.gold >= 100"
+                        @mouseover="$title($event, 'Pay 100 gold and get one grace.')"
                         @mouseleave="$closeTitle()"
                         @click="$socket.emit('donate')"
                         style="font-size: 20px;cursor: pointer;"

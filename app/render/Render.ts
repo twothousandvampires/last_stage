@@ -142,6 +142,7 @@ import FrostExplosionSmall from "./src/sprites/Effect/FrostExplosionSmall"
 import CallOfPower from "./src/sprites/Effect/CallOfPower"
 import CircleOfCalm from "./src/sprites/Effect/CircleOfCalm"
 import Fragility from "./src/sprites/Effect/Fragility"
+import BloodBonesExplode from "./src/sprites/Effect/BloodBonesExplode"
 
 export default class Render{
     
@@ -629,6 +630,9 @@ export default class Render{
         }
         else if(elem.name === 'fragility'){
             return new Fragility(elem.id)
+        }
+        else if(elem.name === 'blood bones explode'){
+            return new BloodBonesExplode(elem.id)
         }
     }
 
