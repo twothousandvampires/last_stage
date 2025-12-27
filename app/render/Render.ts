@@ -160,19 +160,24 @@ export default class Render{
     killed: number
     time: number
     input: any
+    centr_x: number = 0
+    centr_y: number = 0
 
     constructor(socket: any){
         this.client_id = socket.id
         this.socket = socket
-        this.canvas_scale = 6
+        this.canvas_scale = 8
         this.actors = new Map()
         this.light = []
         this.downscale = 5
         this.time = 0
         this.killed = 0
         this.data = new ImageData()
-        this.input = new Input(socket, this.canvas_scale)
+        
         this.init()
+        this.centr_x = 240 / this.canvas_scale
+        this.centr_y = 240 / this.canvas_scale
+        this.input = new Input(socket, this.canvas_scale, this.centr_x)
     }
 
     getPlayerSprite(){
@@ -693,8 +698,8 @@ export default class Render{
         let rel_x = client.x
         let rel_y = client.y
 
-        rel_x = (40 + client.level_id * 120 ) - rel_x
-        rel_y = 40 - rel_y
+        rel_x = (this.centr_x + client.level_id * 120 ) - rel_x
+        rel_y = this.centr_y - rel_y
         
         this.ctx.clearRect(0, 0, 120, 120)
 
@@ -723,8 +728,8 @@ export default class Render{
             let rel_x = client.x - elem.x
             let rel_y = client.y - elem.y
 
-            rel_x = 40 - rel_x
-            rel_y = 40 - rel_y
+            rel_x = this.centr_x - rel_x
+            rel_y = this.centr_y - rel_y
             
             if(elem.flipped){
                 this.ctx.save()

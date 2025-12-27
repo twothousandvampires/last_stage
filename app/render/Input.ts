@@ -22,7 +22,7 @@ export default class Input {
     stick_touch_id: any
     second_stick_touch_id: any
 
-    constructor(socket: any, public scale = 5) {
+    constructor(socket: any, public scale = 5, public offset = 240) {
         this.canvas = document.getElementById('canvas')
         this.canvas.addEventListener('contextmenu', e => e.preventDefault())
         this.socket = socket
@@ -43,10 +43,10 @@ export default class Input {
         if(!this.isTouchDevice()){
             this.canvas.addEventListener('mousemove',(e)=>{
             let x: any =  Math.floor(e.offsetX / this.scale)
-            this.pressed.over_x = x
+            this.pressed.over_x = x - this.offset
 
             let y: any =  Math.floor(e.offsetY / this.scale)
-            this.pressed.over_y = y
+            this.pressed.over_y = y - this.offset
         })
         this.canvas.addEventListener('mouseleave',(e)=>{
             this.pressed.over_x = undefined
@@ -54,10 +54,10 @@ export default class Input {
         })
         this.canvas.addEventListener('mousedown',(e)=>{
             let x: any =  Math.floor(e.offsetX / this.scale)
-            this.pressed.canvas_x = x
+            this.pressed.canvas_x = x - this.offset
 
             let y: any =  Math.floor(e.offsetY / this.scale)
-            this.pressed.canvas_y = y
+            this.pressed.canvas_y = y - this.offset
             
             if(e.which === 1){
                 this.pressed.l_click = true
@@ -261,8 +261,8 @@ export default class Input {
 
         this.pressed.touch_angle = angle
         
-        this.pressed.canvas_x = 40 + (Math.sin(angle) *  Math.floor(distance/ 3))
-        this.pressed.canvas_y = 40 + (Math.cos(angle) *  Math.floor(distance/ 3))
+        this.pressed.canvas_x = this.offset + (Math.sin(angle) *  Math.floor(distance/ 3))
+        this.pressed.canvas_y = this.offset + (Math.cos(angle) *  Math.floor(distance/ 3))
         this.pressed.over_x = this.pressed.canvas_x
         this.pressed.over_y = this.pressed.canvas_y
          
