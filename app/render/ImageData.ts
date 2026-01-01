@@ -47,6 +47,14 @@ export default class ImageData{
             path:  'impy/impy1.png',
         },
         {
+            name: 'plague',
+            path:  'plague bringer/plague.png',
+        },
+        {
+            name: 'binded',
+            path:  'binded rocks/binded_rocks.png',
+        },
+        {
             name: 'pile1',
             path:  'pile/pile1.png',
         },
@@ -157,7 +165,11 @@ export default class ImageData{
         {
             name: 'pack9',
             path:  'effect/pack9.png',
-        },     
+        },   
+        {
+            name: 'pack10',
+            path:  'effect/pack10.png',
+        },   
         {
             name: 'ghost_cultist',
             path:  'effect/ghost_cultist.png',

@@ -143,6 +143,14 @@ import CallOfPower from "./src/sprites/Effect/CallOfPower"
 import CircleOfCalm from "./src/sprites/Effect/CircleOfCalm"
 import Fragility from "./src/sprites/Effect/Fragility"
 import BloodBonesExplode from "./src/sprites/Effect/BloodBonesExplode"
+import PlagueBomb from "./src/sprites/Effect/PlagueBomb"
+import PlagueBombExplode from "./src/sprites/Effect/PlagueBombExplode"
+import Plague from "./src/sprites/Enemy/Plague"
+import FlyingRock from "./src/sprites/Effect/FlyingRock"
+import Binded from "./src/sprites/Enemy/Binded"
+import EarthSpikes from "./src/sprites/Effect/EarthSpikes"
+import EarthSpikesBig from "./src/sprites/Effect/EarthSpikesBig"
+import SingleEarthSpike from "./src/sprites/Effect/SingleEarthSpike"
 
 export default class Render{
     
@@ -166,7 +174,7 @@ export default class Render{
     constructor(socket: any){
         this.client_id = socket.id
         this.socket = socket
-        this.canvas_scale = 8
+        this.canvas_scale = 7
         this.actors = new Map()
         this.light = []
         this.downscale = 5
@@ -335,6 +343,9 @@ export default class Render{
         }
         else if(elem.name === 'flying bones'){
             return new FlyingBones(elem.id)
+        }
+        else if(elem.name === 'plague'){
+            return new Plague(elem.id)
         }
         else if(elem.name === 'elemental enchanted'){
             return new ElementalEnchanted(elem.id)
@@ -638,6 +649,27 @@ export default class Render{
         }
         else if(elem.name === 'blood bones explode'){
             return new BloodBonesExplode(elem.id)
+        }
+        else if(elem.name === 'plague bomb'){
+            return new PlagueBomb(elem.id)
+        }
+        else if(elem.name === 'plague bomb explode'){
+            return new PlagueBombExplode(elem.id)
+        }
+        else if(elem.name === 'flying rock'){
+            return new FlyingRock(elem.id)
+        }
+        else if(elem.name === 'binded rocks'){
+            return new Binded(elem.id)
+        }
+        else if(elem.name === 'earth spikes'){
+            return new EarthSpikes(elem.id)
+        }
+        else if(elem.name === 'earth spikes big'){
+            return new EarthSpikesBig(elem.id)
+        }
+        else if(elem.name === 'single earth spike'){
+            return new SingleEarthSpike(elem.id)
         }
     }
 
