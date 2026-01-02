@@ -63,6 +63,9 @@
                         <p>
                             {{ upgrade.name }}
                         </p>
+                        <p>
+                            {{ upgrade.type }}
+                        </p>
                         <p style="font-size: 14px;">
                            Cost: {{ upgrade.cost }}
                         </p>
